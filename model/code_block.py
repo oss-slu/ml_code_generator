@@ -5,6 +5,6 @@ class CodeBlock:
 
    def to_text(self):
       text_value = comment+"\n"
-      for s in statements:
-         text_value += s+"\n"
+      for statement in statements:
+         text_value += statement+"\n"
       return text_value
