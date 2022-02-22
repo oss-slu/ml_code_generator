@@ -1,13 +1,13 @@
-from model import code_blocks
 import pandas as pd
+from model import code_blocks
 
 class CodeGenerator:
    def __init__(self):
-      self.blocks = code_blocks.AllBlocks();
+      self.blocks = code_blocks.AllBlocks()
 
    def load_data(self, csv_file):
       self.dataframe = pd.read_csv(csv_file)
-      block = code_blocks.CodeBlock("Create a dataframe", 
+      block = code_blocks.CodeBlock("Create a dataframe",
          ["import pandas as pd", "dataframe = pd.read_csv(\'"+csv_file+"\')"])
       self.blocks.add_next_block(block)
       return self.dataframe.shape
