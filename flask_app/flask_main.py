@@ -16,8 +16,7 @@ generator = code_generator.CodeGenerator()
 
 @app.route('/')
 def welcome():
-   return "Welcome"
-
+    return render_template('base.html')
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -32,6 +31,13 @@ def download_code():
 def describe_data():
    description = generator.describe_data()
    return render_template('description.html',table=description.to_html())
+
+@app.route('/clean', methods=['GET'])
+def clean_data():
+   original_data_size = generator.dataframe.shape
+   cleaned_data_size = generator.clean_data()
+   num_rows_removed = original_data_size[0]-cleaned_data_size[0]
+   return render_template('cleaning_summary.html', removed_rows=num_rows_removed)
 
 @app.route('/data', methods=['GET', 'POST'])
 def upload_file():
@@ -56,6 +62,10 @@ def upload_file():
             return render_template('actions.html')
 
     return render_template('upload_data.html')
+
+@app.route('/actions')
+def next_actions():
+    return render_template('actions.html')
 
 # main driver function
 if __name__ == '__main__':
