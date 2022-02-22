@@ -34,5 +34,5 @@ class CodeGenerator:
       return self.blocks.to_text()
 
    def _create_new_block(self, comment, statements):
-      block = code_blocks.CodeBloc(comment, statements)
+      block = code_blocks.CodeBlock(comment, statements)
       self.blocks.add_next_block(block)
