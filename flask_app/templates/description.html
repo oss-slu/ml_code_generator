@@ -1,8 +1,10 @@
-<!doctype html>
-<title>Data Description</title>
+{% extends 'base.html' %}
+
+{% block content %}
 <table>
     <h1>
     <!--Displaying the converted table-->
         {{ table|safe }}
     </h1>
 </table>
+{% endblock %}
