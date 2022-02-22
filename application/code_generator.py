@@ -4,7 +4,7 @@ from model import code_blocks
 class CodeGenerator:
    def __init__(self):
       self.blocks = code_blocks.AllBlocks()
-      self.dataframe = None
+      self.dataframe = pd.DataFrame()
 
    def load_data(self, csv_file):
       self.dataframe = pd.read_csv(csv_file)
@@ -33,6 +33,6 @@ class CodeGenerator:
       keys = self.dataframe.keys()
       self.blocks.add_next_block(block)
       return keys
-     
+
    def download_code(self):
       return self.blocks.to_text()
