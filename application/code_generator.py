@@ -4,6 +4,7 @@ from model import code_blocks
 class CodeGenerator:
    def __init__(self):
       self.blocks = code_blocks.AllBlocks()
+      self.dataframe = None
 
    def load_data(self, csv_file):
       self.dataframe = pd.read_csv(csv_file)

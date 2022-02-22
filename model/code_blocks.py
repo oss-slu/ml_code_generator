@@ -11,6 +11,9 @@ class CodeBlock:
          text_value += statement+"\n"
       return text_value
 
+   def from_text(self, text):
+      pass
+
 class AllBlocks:
    def __init__(self):
       self.blocks = deque()
