@@ -8,31 +8,31 @@ class CodeGenerator:
 
    def load_data(self, csv_file):
       self.dataframe = pd.read_csv(csv_file)
-      block = code_blocks.CodeBlock("Create a dataframe",
+      self._create_new_block("Create a dataframe",
          ["import pandas as pd", "dataframe = pd.read_csv(\'"+csv_file+"\')"])
-      self.blocks.add_next_block(block)
       return self.dataframe.shape
 
    def describe_data(self):
       output = self.dataframe.describe()
-      block = code_blocks.CodeBlock("Describe data",
+      self._create_new_block("Describe data",
          ["data_description = dataframe.describe()", "print(data_description)"])
-      self.blocks.add_next_block(block)
       return output
 
    def clean_data(self):
       self.dataframe.dropna(axis=0,inplace=True)
-      block = code_blocks.CodeBlock("Drop null rows",
+      self._create_new_block("Drop null rows",
          ["dataframe.dropna(axis=0,inplace=True)"])
-      self.blocks.add_next_block(block)
       return self.dataframe.shape
 
    def get_labels(self):
-      block = code_blocks.CodeBlock("Get feature names",
+      self._create_new_block("Get feature names",
          ["keys = dataframe.keys()", "print(keys)"])
       keys = self.dataframe.keys()
-      self.blocks.add_next_block(block)
       return keys
 
    def download_code(self):
       return self.blocks.to_text()
+
+   def _create_new_block(self, comment, statements):
+      block = code_blocks.CodeBloc(comment, statements)
+      self.blocks.add_next_block(block)
