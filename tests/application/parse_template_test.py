@@ -1,4 +1,3 @@
-import pytest
 from application.parse_template import get_args_index
 from application.parse_template import replace_args_with_values
 
