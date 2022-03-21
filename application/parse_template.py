@@ -2,7 +2,7 @@ import re
 def parse_template(template, args):
    generated_comments = []
    generated_code = []
-   with open(template) as source_code:
+   with open(template, encoding='ascii') as source_code:
       lines = source_code.readlines()
       for line in lines:
          trimmed_line = line.strip()
@@ -19,7 +19,7 @@ def parse_template(template, args):
    return (generated_comments, generated_code)
 
 def replace_args_with_values(line, args):
-   match = re.search("args\[[0-9]\]", line)
+   match = re.search(r"args\[[0-9]\]", line)
    if not match:
       return line
 
@@ -36,4 +36,3 @@ def get_args_index(args_string):
    index_string = args_string[index_span[0]:index_span[1]]
    index_value = int(index_string)
    return index_value
-  

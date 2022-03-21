@@ -29,10 +29,10 @@ def test_one_args_per_line():
    line = 'print(args[0])'
    args=['kate']
    line_replaced = replace_args_with_values(line, args)
-   assert(line_replaced=='print(\'kate\')')
+   assert line_replaced=='print(\'kate\')'
 
 def test_one_args_with_special_chars():
    line = 'print(args[0])'
    args=['~/Downloads/possum.csv']
    line_replaced = replace_args_with_values(line, args)
-   assert(line_replaced=='print(\'~/Downloads/possum.csv\')')
+   assert line_replaced=='print(\'~/Downloads/possum.csv\')'

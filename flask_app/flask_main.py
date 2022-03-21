@@ -11,7 +11,7 @@ from application import code_generator
 ALLOWED_EXTENSIONS = {'csv'}
 
 app = Flask(__name__)
-UPLOAD_FOLDER='../data/'
+UPLOAD_FOLDER='data/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 generator = code_generator.CodeGenerator()
 

@@ -10,7 +10,7 @@ class CodeGenerator:
 
    def load_data(self, csv_file):
       (comments, code) = parse_template('application/code_templates/read_csv.py', csv_file)
-      self.dataframe = read_csv.get_code([csv_file]) 
+      self.dataframe = read_csv.get_code([csv_file])
       #self.dataframe = pd.read_csv(csv_file)
 
       self._create_new_block(comments[0], code)
