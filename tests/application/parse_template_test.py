@@ -26,12 +26,13 @@ def test_args_99999():
 
 def test_one_args_per_line():
    line = 'print(args[0])'
-   args=['kate']
+   args=["'kate'"]
    line_replaced = replace_args_with_values(line, args)
    assert line_replaced=='print(\'kate\')'
 
 def test_one_args_with_special_chars():
    line = 'print(args[0])'
-   args=['~/Downloads/possum.csv']
+   args=["\'~/Downloads/possum.csv\'"]
    line_replaced = replace_args_with_values(line, args)
+   print(line_replaced)
    assert line_replaced=='print(\'~/Downloads/possum.csv\')'

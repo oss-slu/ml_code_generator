@@ -27,7 +27,7 @@ def replace_args_with_values(line, args):
    args_string = line[args_span[0]:args_span[1]]
    args_index = get_args_index(args_string)
 
-   line = line[0:args_span[0]]+'\''+args[args_index]+'\''+line[args_span[1]:]
+   line = line[0:args_span[0]]+args[args_index]+line[args_span[1]:]
    return line
 
 def get_args_index(args_string):
