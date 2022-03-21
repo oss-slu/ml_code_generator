@@ -1,13 +1,9 @@
-import pandas as pd
 from model import code_blocks
-from application.parse_template import parse_template
-from application.code_templates import read_csv
-from application.code_templates import describe_data
-
 class CodeGenerator:
-   def __init__(self, template_mapping):
+   def __init__(self, template_mapping, parse_template):
       self.blocks = code_blocks.AllBlocks()
       self.function_mapping = template_mapping
+      self.parse_template = parse_template
       self.data = {}
 
 
@@ -45,7 +41,7 @@ class CodeGenerator:
             replaced_args.append(arg)
             string_args.append('\"'+arg+'\"')
 
-      (comments, code) = parse_template('application/code_templates/'+template+'.py', string_args)
+      (comments, code) = self.parse_template(template, string_args)
       self._create_new_block(comments[0], code)
       output = self.function_mapping[template](replaced_args)
       return output
