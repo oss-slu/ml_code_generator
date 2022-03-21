@@ -1,6 +1,7 @@
 import sys
 from application import code_generator
 
+#process the arguments
 print(sys.argv)
 input_file = sys.argv[1]
 generator = code_generator.CodeGenerator()

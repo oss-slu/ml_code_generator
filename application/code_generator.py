@@ -1,5 +1,7 @@
 import pandas as pd
 from model import code_blocks
+from application.parse_template import parse_template
+from application.code_templates import read_csv
 
 class CodeGenerator:
    def __init__(self):
@@ -7,9 +9,13 @@ class CodeGenerator:
       self.dataframe = pd.DataFrame()
 
    def load_data(self, csv_file):
-      self.dataframe = pd.read_csv(csv_file)
-      self._create_new_block("Create a dataframe",
-         ["import pandas as pd", "dataframe = pd.read_csv(\'"+csv_file+"\')"])
+      (comments, code) = parse_template('application/code_templates/read_csv.py', csv_file)
+      self.dataframe = read_csv.get_code([csv_file]) 
+      #self.dataframe = pd.read_csv(csv_file)
+
+      self._create_new_block(comments[0], code)
+      #self._create_new_block("Create a dataframe",
+      #   ["import pandas as pd", "dataframe = pd.read_csv(\'"+csv_file+"\')"])
       return self.dataframe.shape
 
    def describe_data(self):
