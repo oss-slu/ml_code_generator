@@ -16,7 +16,7 @@ ALLOWED_EXTENSIONS = {'csv'}
 app = Flask(__name__)
 UPLOAD_FOLDER='data/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-generator = code_generator.CodeGenerator(template_mapping, parse_mapping)
+generator = code_generator.CodeGenerator(template_mapping, parse_template)
 
 @app.route('/')
 def welcome():
