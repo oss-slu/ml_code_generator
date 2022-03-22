@@ -47,7 +47,7 @@ class CodeGenerator:
             string_args.append(arg)
          else:
             replaced_args.append(arg)
-            if type(arg)==str:
+            if isinstance(arg, str):
                string_args.append('\"'+arg+'\"')
             else:
                string_args.append(str(arg))
