@@ -36,3 +36,9 @@ def test_one_args_with_special_chars():
    line_replaced = replace_args_with_values(line, args)
    print(line_replaced)
    assert line_replaced=='print(\'~/Downloads/possum.csv\')'
+
+def test_two_args_per_line():
+   line = 'print(args[0],args[1])'
+   args=["'kate'", '5']
+   line_replaced = replace_args_with_values(line, args)
+   assert line_replaced=='print(\'kate\',5)'

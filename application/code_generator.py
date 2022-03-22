@@ -25,6 +25,12 @@ class CodeGenerator:
       keys = self._parse_and_execute('get_keys', ['dataframe'])
       return keys
 
+   def split_data(self, train_ratio = 0.8, seed = 200):
+      (train, test) = self._parse_and_execute('split',['dataframe',train_ratio,seed])
+      self.data['train'] = train
+      self.data['test'] = test
+      return self.data['train'].shape
+
    def download_code(self):
       return self.blocks.to_text()
 
@@ -41,7 +47,10 @@ class CodeGenerator:
             string_args.append(arg)
          else:
             replaced_args.append(arg)
-            string_args.append('\"'+arg+'\"')
+            if isinstance(arg, str):
+               string_args.append('\"'+arg+'\"')
+            else:
+               string_args.append(str(arg))
 
       (comments, code) = self.parse_template(template, string_args)
       self._create_new_block(comments[0], code)
