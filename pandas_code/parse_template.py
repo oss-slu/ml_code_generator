@@ -21,14 +21,14 @@ def parse_template(template_name, args):
 
 def replace_args_with_values(line, args):
    match = re.search(r"args\[[0-9]\]", line)
-   if not match:
-      return line
+   while match:
+      args_span = match.span()
+      args_string = line[args_span[0]:args_span[1]]
+      args_index = get_args_index(args_string)
 
-   args_span = match.span()
-   args_string = line[args_span[0]:args_span[1]]
-   args_index = get_args_index(args_string)
+      line = line[0:args_span[0]]+args[args_index]+line[args_span[1]:]
+      match = re.search(r"args\[[0-9]\]", line)
 
-   line = line[0:args_span[0]]+args[args_index]+line[args_span[1]:]
    return line
 
 def get_args_index(args_string):
