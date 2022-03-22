@@ -1,38 +1,52 @@
-import pandas as pd
 from model import code_blocks
-
 class CodeGenerator:
-   def __init__(self):
+   def __init__(self, template_mapping, parse_template):
       self.blocks = code_blocks.AllBlocks()
-      self.dataframe = pd.DataFrame()
+      self.function_mapping = template_mapping
+      self.parse_template = parse_template
+      self.data = {}
+
+   def get_data(self):
+      return self.data['dataframe']
 
    def load_data(self, csv_file):
-      self.dataframe = pd.read_csv(csv_file)
-      block = code_blocks.CodeBlock("Create a dataframe",
-         ["import pandas as pd", "dataframe = pd.read_csv(\'"+csv_file+"\')"])
-      self.blocks.add_next_block(block)
-      return self.dataframe.shape
+      self._save('dataframe', self._parse_and_execute('read_csv', [csv_file]))
+      return self.data['dataframe'].shape
 
    def describe_data(self):
-      output = self.dataframe.describe()
-      block = code_blocks.CodeBlock("Describe data",
-         ["data_description = dataframe.describe()", "print(data_description)"])
-      self.blocks.add_next_block(block)
+      output = self._parse_and_execute('describe_data', ['dataframe'])
       return output
 
    def clean_data(self):
-      self.dataframe.dropna(axis=0,inplace=True)
-      block = code_blocks.CodeBlock("Drop null rows",
-         ["dataframe.dropna(axis=0,inplace=True)"])
-      self.blocks.add_next_block(block)
-      return self.dataframe.shape
+      self._parse_and_execute('clean_data', ['dataframe'])
+      return self.data['dataframe'].shape
 
    def get_labels(self):
-      block = code_blocks.CodeBlock("Get feature names",
-         ["keys = dataframe.keys()", "print(keys)"])
-      keys = self.dataframe.keys()
-      self.blocks.add_next_block(block)
+      keys = self._parse_and_execute('get_keys', ['dataframe'])
       return keys
 
    def download_code(self):
       return self.blocks.to_text()
+
+   def _create_new_block(self, comment, statements):
+      block = code_blocks.CodeBlock(comment, statements)
+      self.blocks.add_next_block(block)
+
+   def _parse_and_execute(self, template, args):
+      replaced_args = []
+      string_args = []
+      for arg in args:
+         if arg in self.data:
+            replaced_args.append(self.data[arg])
+            string_args.append(arg)
+         else:
+            replaced_args.append(arg)
+            string_args.append('\"'+arg+'\"')
+
+      (comments, code) = self.parse_template(template, string_args)
+      self._create_new_block(comments[0], code)
+      output = self.function_mapping[template](replaced_args)
+      return output
+
+   def _save(self, key, value):
+      self.data[key] = value
