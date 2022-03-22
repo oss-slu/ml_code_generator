@@ -6,6 +6,8 @@ class CodeGenerator:
       self.parse_template = parse_template
       self.data = {}
 
+   def get_data(self):
+      return self.data['dataframe']
 
    def load_data(self, csv_file):
       self._save('dataframe', self._parse_and_execute('read_csv', [csv_file]))

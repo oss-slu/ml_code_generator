@@ -7,13 +7,16 @@ from flask import request, redirect, flash
 from werkzeug.utils import secure_filename
 
 from application import code_generator
+from pandas_code.mapping import template_mapping
+from pandas_code.parse_template import parse_template
+
 
 ALLOWED_EXTENSIONS = {'csv'}
 
 app = Flask(__name__)
 UPLOAD_FOLDER='data/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-generator = code_generator.CodeGenerator()
+generator = code_generator.CodeGenerator(template_mapping, parse_mapping)
 
 @app.route('/')
 def welcome():
@@ -34,7 +37,7 @@ def describe_data():
 
 @app.route('/clean', methods=['GET'])
 def clean_data():
-   original_data_size = generator.dataframe.shape
+   original_data_size = generator.get_data().shape
    cleaned_data_size = generator.clean_data()
    num_rows_removed = original_data_size[0]-cleaned_data_size[0]
    return render_template('cleaning_summary.html', removed_rows=num_rows_removed)
