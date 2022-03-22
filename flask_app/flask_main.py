@@ -42,6 +42,11 @@ def clean_data():
    num_rows_removed = original_data_size[0]-cleaned_data_size[0]
    return render_template('cleaning_summary.html', removed_rows=num_rows_removed)
 
+@app.route('/split', methods=['GET'])
+def split_data():
+   train_data_size = generator.split_data()
+   return render_template('splitting_summary.html', num_rows_train=train_data_size[0])
+
 @app.route('/data', methods=['GET', 'POST'])
 def upload_file():
    if request.method == 'POST':
