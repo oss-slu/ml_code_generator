@@ -13,7 +13,7 @@ from pandas_code.parse_template import parse_template
 
 ALLOWED_EXTENSIONS = {'csv'}
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 UPLOAD_FOLDER='data/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 generator = code_generator.CodeGenerator(template_mapping, parse_template)
@@ -28,24 +28,24 @@ def allowed_file(filename):
 @app.route('/download', methods=['GET'])
 def download_code():
    code = generator.download_code()
-   return render_template('code.html', text=code)
+   return render_template('info/code.html', text=code)
 
 @app.route('/describe', methods=['GET'])
 def describe_data():
    description = generator.describe_data()
-   return render_template('description.html',table=description.to_html())
+   return render_template('info/description.html',table=description.to_html())
 
 @app.route('/clean', methods=['GET'])
 def clean_data():
    original_data_size = generator.get_data().shape
    cleaned_data_size = generator.clean_data()
    num_rows_removed = original_data_size[0]-cleaned_data_size[0]
-   return render_template('cleaning_summary.html', removed_rows=num_rows_removed)
+   return render_template('info/cleaning_summary.html', removed_rows=num_rows_removed)
 
 @app.route('/split', methods=['GET'])
 def split_data():
    train_data_size = generator.split_data()
-   return render_template('splitting_summary.html', num_rows_train=train_data_size[0])
+   return render_template('info/splitting_summary.html', num_rows_train=train_data_size[0])
 
 @app.route('/data', methods=['GET', 'POST'])
 def upload_file():
@@ -68,13 +68,13 @@ def upload_file():
          print(g)
          with app.app_context():
             generator.load_data(app.config['UPLOAD_FOLDER']+'/'+filename)
-         return render_template('actions.html')
+         return render_template('actions/actions.html')
 
-   return render_template('upload_data.html')
+   return render_template('actions/upload_data.html')
 
 @app.route('/actions')
 def next_actions():
-   return render_template('actions.html')
+   return render_template('actions/actions.html')
 
 # main driver function
 if __name__ == '__main__':
