@@ -47,6 +47,11 @@ def split_data():
    train_data_size = generator.split_data()
    return render_template('splitting_summary.html', num_rows_train=train_data_size[0])
 
+@app.route('/labels', methods=['GET'])
+def get_data_labels():
+   keys = generator.get_labels();
+   return render_template('labels.html', labels=keys)
+
 @app.route('/data', methods=['GET', 'POST'])
 def upload_file():
    if request.method == 'POST':
