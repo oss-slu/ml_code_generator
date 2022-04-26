@@ -1,3 +1,63 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: gray;
+    color: white;
+}
+
 table {
   border-collapse: collapse;
+}
+
+a {
+   text-decoration: none;
+   color:white;
+}
+ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+}
+
+li {
+   display: inline;
+}
+
+li a{
+   text-align: left;
+   text-decoration: none;
+}
+
+.action {
+    display: block;
+    padding: 1em;
+    font-weight: bold;
+    border-radius: 2em; 
+    border-color: lightgray;
+}
+
+.instructions {
+   padding: 1em;
+}
+
+.inputform {
+   background-color: lightblue;
+   padding:3em;
+}
+input[type=file]::file-selector-button{
+   background-color: white;
+   font-weight: bold;
+}
+
+body {
+   background: lightgray;
+   color: darkblue;
+}
+.next-actions{
+   display: grid;
+   grid-template-columns: repeat(3, auto);
+}
+.card{
+   border-style:solid;
+   background-color:lightblue;
 }

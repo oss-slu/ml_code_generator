@@ -2,7 +2,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<p class="instructions"> Select your next step from the options below</p>
+<div class="next-actions">
 {% include 'describe_data.html' %}
 {% include 'clean_data.html' %}
 {% include 'split_data.html' %}
+</div>
 {% endblock %}
