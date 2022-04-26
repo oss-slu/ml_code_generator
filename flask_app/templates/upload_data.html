@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
-{% block header %}
-   <h1>{% block title %}Upload New File{% endblock %}</h1>
-{% endblock %}
-
 {% block content %}
-<form method=post enctype=multipart/form-data>
-<input type=file name=file>
-<input type=submit value=Upload>
-</form>
+<h1>Upload Your Data</h1>
+<div class="instructions">
+  <p>Select a CSV file to use as your data. You will be able to choose the columns (features)
+     and pre-process the data later.
+  </p>
+</div>
+
+<div class="inputform">
+   <form method=post enctype=multipart/form-data>
+   <input required type="file" name="file">
+   <input class="action" type=submit value=Upload>
+   </form>
+</div>
+
 {% endblock %}

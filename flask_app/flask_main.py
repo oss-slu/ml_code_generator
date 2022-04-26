@@ -20,7 +20,7 @@ generator = code_generator.CodeGenerator(template_mapping, parse_template)
 
 @app.route('/')
 def welcome():
-   return render_template('base.html')
+   return render_template('home.html')
 
 def allowed_file(filename):
    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
