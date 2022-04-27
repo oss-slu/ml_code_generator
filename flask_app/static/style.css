@@ -29,11 +29,12 @@ li a{
 }
 
 .action {
-    display: block;
+    display: inline-block;
     padding: 1em;
     font-weight: bold;
-    border-radius: 2em; 
-    border-color: lightgray;
+    border-radius:2em;
+    background: black;
+    color: white;
 }
 
 .instructions {
@@ -60,4 +61,8 @@ body {
 .card{
    border-style:solid;
    background-color:lightblue;
+}
+
+.information{
+
 }
