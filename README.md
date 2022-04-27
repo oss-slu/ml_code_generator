@@ -8,6 +8,9 @@
 ## Virtual environment
 1. Activate virutal environment each time you use this code: source venv/bin/activate
 
+## Set PYTHONPATH
+export PYTHONPATH=$(pwd)
+
 ## Run the code at command line:
 1. python3 driver.py <INPUT_CSV_FILE>
 
