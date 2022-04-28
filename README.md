@@ -1,8 +1,11 @@
 # ml_code_generator
 
 ## Install dependencies (only one time)
+The instructions below assume that python3 and pip3 refer to Python 3.x and Pip 3.x. Depending on how things are configured, you may need to use python and pip commands instead of python3 and pip3.
 1. Create a virtual environment: python3 -m venv venv
-2. Activate virtual environment: source venv/bin/activate
+2. Activate virtual environment: 
+   * Mac or Linux: source venv/bin/activate
+   * Windows: source venv/Scripts/activate
 3. Install dependencies: pip3 install -r requirements.txt
 
 ## Virtual environment
