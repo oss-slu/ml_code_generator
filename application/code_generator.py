@@ -23,7 +23,12 @@ class CodeGenerator:
 
    def get_labels(self):
       keys = self._parse_and_execute('get_keys', ['dataframe'])
-      return keys
+      return keys.values.tolist()
+
+   def select_y(self, output_label):
+      X, Y = self._parse_and_execute('select_y', ['dataframe', output_label])
+      self._save('X', X)
+      self._save('Y', Y)
 
    def split_data(self, train_ratio = 0.8, seed = 200):
       (train, test) = self._parse_and_execute('split',['dataframe',train_ratio,seed])
