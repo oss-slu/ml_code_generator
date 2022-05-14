@@ -59,6 +59,11 @@ def get_data_labels():
       return render_template('actions/select_output_value.html', labels=keys)
 #   return render_template('labels.html', labels=keys)
 
+@app.route('/labels', methods=['GET'])
+def get_data_labels():
+   keys = generator.get_labels();
+   return render_template('labels.html', labels=keys)
+
 @app.route('/data', methods=['GET', 'POST'])
 def upload_file():
    if request.method == 'POST':
