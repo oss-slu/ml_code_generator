@@ -53,16 +53,10 @@ def get_data_labels():
       request_dict = request.form.to_dict()
       generator.select_y(request_dict['label'])
       return render_template('home.html')
-   else:
-      keys = generator.get_labels();
-      print(keys)
-      return render_template('actions/select_output_value.html', labels=keys)
-#   return render_template('labels.html', labels=keys)
 
-@app.route('/labels', methods=['GET'])
-def get_data_labels():
-   keys = generator.get_labels();
-   return render_template('labels.html', labels=keys)
+   keys = generator.get_labels()
+   return render_template('actions/select_output_value.html', labels=keys)
+#   return render_template('labels.html', labels=keys)
 
 @app.route('/data', methods=['GET', 'POST'])
 def upload_file():
