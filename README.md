@@ -9,7 +9,7 @@ The instructions below assume that python3 and pip3 refer to Python 3.x and Pip 
 3. Install dependencies: pip3 install -r requirements.txt
 
 ## Virtual environment
-1. Activate virutal environment each time you use this code: source venv/bin/activate
+1. Activate virtual environment each time you use this code: source venv/bin/activate
 
 ## Set PYTHONPATH
 export PYTHONPATH=$(pwd)

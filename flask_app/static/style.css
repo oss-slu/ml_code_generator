@@ -1,18 +1,39 @@
-.container {
-    width: 80%;
-    margin: 0 auto;
-    background-color: gray;
-    color: white;
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-table {
-  border-collapse: collapse;
+body {
+   background: #21252d;
+   display: flex;
+   display: -webkit-flex;
+   align-items: center;
+   justify-content: center;
+   -webkit-justify-content: center;
+   -webkit-align-items: center;
+   font-family: "PT Sans", Arial, sans-serif;
+   height: 95vh;
+ }
+
+.container {
+   width: 80%;
+   margin: 0 auto;
+   background-color: #353b44;
+   color: white;
+   padding: 1.5em;
+   border-radius: 25px;
 }
+
+/* navbar styling */
 
 a {
    text-decoration: none;
-   color:white;
 }
+
+
 ul {
    list-style-type: none;
    margin: 0;
@@ -23,46 +44,152 @@ li {
    display: inline;
 }
 
-li a{
+li a {
    text-align: left;
    text-decoration: none;
+   color: #21252d;
+   font-size: 1em;
 }
 
-.action {
-    display: inline-block;
-    padding: 1em;
-    font-weight: bold;
-    border-radius:2em;
-    background: black;
-    color: white;
+.container ul {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
 }
 
-.instructions {
+.container ul li {
+  padding: 0.8em;
+  border-radius: 1em;
+  background: #51ffc2;
+  -webkit-box-shadow: 0px 0px 14px 3px rgba(81,255,194,0.35);
+  box-shadow: 0px 0px 14px 3px rgba(81,255,194,0.35);
+}
+
+/* base.html */
+
+.content {
+   text-align: center;
+}
+
+.content header {
+   font-size: 2em;
+   font-weight: 800;
+   background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%);
+   background-clip: text;
+   -webkit-background-clip: text;
+   color: transparent;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+}
+
+.content h1 {
+   margin-block-start: 1rem !important;
+   margin-block-end: 1rem !important;
+}
+
+.content div h1 {
+   font-size: 1.5em;
+}
+
+/* home.html */
+
+.content p {
+   font-size: 1.05em;
+   line-height: 2.25em;
+   margin-block-start: 1rem !important;
+   margin-block-end: 1rem !important;
+}
+
+/* upload_data.html */
+
+.instructions p {
+   font-size: 1.05em;
+   line-height: 2.25em;
+   margin-block-start: 1rem !important;
+   margin-block-end: 1rem !important;
+}
+
+.inputform form {
+   margin-top: 1.5em;
+}
+
+input:is([type="button"], [type="submit"]), input[type="file"]::file-selector-button, button {
+   font-weight: bold;
+   font-size: 13px;
+   width: 150px;
+   padding: 1em;
+   border-radius: 1em;
+   border-width: 0;
+}
+
+input:is([type="file"]) {
+   margin-right: 10em;
+}
+
+input:is([type="button"]), input[type="file"]::file-selector-button, button {
+   background-color: white;
+}
+
+input:is([type="submit"]), button {
+   -webkit-box-shadow: 0px 0px 14px 3px rgba(255,202,210,0.35);
+   box-shadow: 0px 0px 14px 3px rgba(255,202,210,0.35);
+   background: linear-gradient(90deg, rgba(255,202,210,1) 0%, rgba(253,140,156,1) 0%, rgba(255,182,192,0.8449754901960784) 100%);
+   color: white;
+}
+
+/* description.html */
+
+table {
+   border-collapse: collapse;
+   width: 100%;
+}
+
+th, td {
    padding: 1em;
 }
 
-.inputform {
-   background-color: lightblue;
-   padding:3em;
+.information {
+   justify-content: center;
+   overflow: scroll;
+   height: 60vh;
 }
-input[type=file]::file-selector-button{
-   background-color: white;
+
+/* actions.html */
+
+.action a {
+   display: inline-block;
+   padding: 0.5em;
    font-weight: bold;
+   border-radius: 1em;
+   background: linear-gradient(90deg, rgba(255,202,210,1) 0%, rgba(253,140,156,1) 0%, rgba(255,182,192,0.8449754901960784) 100%);
+   color: white;
+   width: 20%;
+   -webkit-box-shadow: 0px 0px 14px 3px rgba(255,202,210,0.35);
+  box-shadow: 0px 0px 14px 3px rgba(255,202,210,0.35);
+  line-height: 2.25em;
 }
 
-body {
-   background: lightgray;
-   color: darkblue;
-}
-.next-actions{
-   display: grid;
-   grid-template-columns: repeat(3, auto);
-}
-.card{
-   border-style:solid;
-   background-color:lightblue;
+.next-actions {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  margin-top: 2em;
 }
 
-.information{
+.card {
+  border-radius: 1.5em;
+  background-color:#1b1f25;
+  padding: 1em;
+  margin: 1em;
+  position: relative;
+}
 
+.card form {
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+  margin-bottom: 1.7rem;
+}
+
+.card p {
+  margin-bottom: 5em !important;
 }
