@@ -10,7 +10,9 @@ class CodeGenerator:
       return self.data['dataframe']
 
    def load_data(self, csv_file):
-      self._save('dataframe', self._parse_and_execute('read_csv', [csv_file]))
+      dataframe = self._parse_and_execute('read_csv', [csv_file])
+      self._save('dataframe', dataframe)
+      self._save('X', dataframe)
       return self.data['dataframe'].shape
 
    def describe_data(self):
@@ -22,13 +24,17 @@ class CodeGenerator:
       return self.data['dataframe'].shape
 
    def get_labels(self):
-      keys = self._parse_and_execute('get_keys', ['dataframe'])
+      keys = self._parse_and_execute('get_keys', ['X'])
       return keys.values.tolist()
 
+   def drop_x(self, input_labels):
+      x_values = self._parse_and_execute('drop_x', ['dataframe', input_labels])
+      self._save('X', x_values)
+
    def select_y(self, output_label):
-      X, Y = self._parse_and_execute('select_y', ['dataframe', output_label])
-      self._save('X', X)
-      self._save('Y', Y)
+      x_values, y_values = self._parse_and_execute('select_y', ['dataframe', output_label])
+      self._save('X', x_values)
+      self._save('Y', y_values)
 
    def split_data(self, train_ratio = 0.8, seed = 200):
       (train, test) = self._parse_and_execute('split',['dataframe',train_ratio,seed])
@@ -47,7 +53,7 @@ class CodeGenerator:
       replaced_args = []
       string_args = []
       for arg in args:
-         if arg in self.data:
+         if isinstance(arg, str) and arg in self.data:
             replaced_args.append(self.data[arg])
             string_args.append(arg)
          else:
