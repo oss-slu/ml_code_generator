@@ -1,0 +1,27 @@
+<!doctype html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+   <h2> Describe your output value</h2>
+   <p>
+      Pick your the value you want to predict
+   </p>
+   <form action="/labels" method="post">
+      <div>
+         <select name=label>
+             {% for label in labels %}
+                <option value= "{{label}}" SELECTED>{{label}}</option>"
+             {% endfor %}
+         </select>
+      </div>
+
+      <div>
+         <input type="radio" name="continuous" value=true>Continuous</input>
+         <input type="radio" name="continuous" value=false>Discrete</input>
+      </div>
+
+      <input class="action" type="submit" value="Submit Selection" />
+</div>
+{% endblock %}
