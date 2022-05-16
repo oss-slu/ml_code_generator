@@ -51,7 +51,7 @@ def split_data():
 def get_input_labels():
    if request.method == 'POST':
       request_dict = request.form.to_dict()
-      generator.select_x(request_dict['drop_labels'])
+      generator.drop_x(request_dict['drop_labels'])
       return render_template('home.html')
 
    keys = generator.get_labels()
