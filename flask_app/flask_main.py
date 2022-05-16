@@ -47,12 +47,22 @@ def split_data():
    train_data_size = generator.split_data()
    return render_template('info/splitting_summary.html', num_rows_train=train_data_size[0])
 
+@app.route('/input_labels', methods=['GET', 'POST'])
+def get_input_labels():
+   if request.method == 'POST':
+      request_dict = request.form.to_dict()
+      generator.select_x(request_dict['drop_labels'])
+      return render_template('home.html')
+
+   keys = generator.get_labels()
+   return render_template('actions/select_input_values.html', labels=keys)
+
 @app.route('/labels', methods=['GET', 'POST'])
 def get_data_labels():
    if request.method == 'POST':
       request_dict = request.form.to_dict()
       generator.select_y(request_dict['label'])
-      return render_template('home.html')
+      return redirect('/input_labels')
 
    keys = generator.get_labels()
    return render_template('actions/select_output_value.html', labels=keys)
