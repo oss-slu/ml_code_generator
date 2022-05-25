@@ -159,7 +159,7 @@ th, td {
    width: 60%;
    text-align: left !important;
    background-color: #1b1f25;
-   padding: 0.5em;
+   padding: 1em;
    border-radius: 1.5em;
 }
 
@@ -179,7 +179,7 @@ th, td {
 }
 
 .action button {
-   margin-top: 1em;
+   margin-top: 1.5rem;
 }
 
 .next-actions {
