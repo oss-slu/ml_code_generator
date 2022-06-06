@@ -52,7 +52,7 @@ def get_input_labels():
    if request.method == 'POST':
       request_dict = request.form.to_dict()
       generator.drop_x(request_dict['drop_labels'])
-      return render_template('home.html')
+      return render_template('actions/actions.html')
 
    keys = generator.get_labels()
    return render_template('actions/select_input_values.html', labels=keys)
