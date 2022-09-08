@@ -4,11 +4,11 @@
 {% block content %}
 
 <div class="card">
-   <h2> Describe your output value</h2>
+   <h2> Select your input values</h2>
    <p>
-      Pick your the values you want to exclude from this model.
+      Pick your the values you want to <b>exclude</b> from this model.
    </p>
-   <form action="/labels" method="post">
+   <form action="/input_labels" method="post">
       <div>
           {% for label in labels %}
              <input type="checkbox" name="drop_labels" value= "{{label}}" SELECTED>{{label}}</option>"

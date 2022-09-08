@@ -28,16 +28,16 @@ class CodeGenerator:
       return keys.values.tolist()
 
    def drop_x(self, input_labels):
-      x_values = self._parse_and_execute('drop_x', ['dataframe', input_labels])
+      x_values = self._parse_and_execute('drop_x', ['X', input_labels])
       self._save('X', x_values)
 
    def select_y(self, output_label):
-      x_values, y_values = self._parse_and_execute('select_y', ['dataframe', output_label])
+      x_values, y_values = self._parse_and_execute('select_y', ['X', output_label])
       self._save('X', x_values)
       self._save('Y', y_values)
 
    def split_data(self, train_ratio = 0.8, seed = 200):
-      (train, test) = self._parse_and_execute('split',['dataframe',train_ratio,seed])
+      (train, test) = self._parse_and_execute('split',['X',train_ratio,seed])
       self.data['train'] = train
       self.data['test'] = test
       return self.data['train'].shape
