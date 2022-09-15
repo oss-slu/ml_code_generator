@@ -6,7 +6,7 @@ to get started running this code in your development environment.
 ## Install pre-requisite tools
 To take advantage of the development environment defined in this project, you will need two tools:
 1. <a href="https://code.visualstudio.com/">Visual Studio Code</a>
-2. <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a>
+2. <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a>. This may take a while. You might need to restart your computer as part of this install. Follow the installation instructions to complete this. If running on Windows, you may be prompted to install a kernel update for WLS.
 
 Make sure to install these tools on your development system. Don't worry, they are free!
 
