@@ -1,0 +1,17 @@
+The purpose of this document is to lay out the different ways the files in this code generator connect to each other 
+to better help programmers that are new to this project.
+
+The code generator is built using the flask application which allows for a more friendly gui along with a friendlier
+way to edit the code. The flask application is included in the os package which is imported within flask_main.py.
+
+The most important files are split up into three different classes: application, model, and pandas_code. Within pandas_code,
+most of the important files will be found within code_templates. Each file within code_templates gives a different function
+for the code generator which will be where new features can be added. 
+
+As can be seen at the top of many of the files found within these three important classes, each files builds on that of 
+a previous file that may be found in a different class. This limits the number of dependencies that may be found within
+this code and allows for easier debugging. 
+
+Other sections do exist as well for uploading data which can be found under the data class of files and there is a section
+to upload tests which can be seen under the tests class. As mentioned before each section of this code generator is neatly 
+laid out to limit dependencies while also allowing a programmer to easily find sections that they may be looking for.
