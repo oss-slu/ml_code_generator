@@ -29,6 +29,15 @@ data summary. Generated python code will be printed to the terminal.
 ## Run the code via a web interface:
 1. python3 flask_app/flask_main.py
 
+If all goes well, you should see the following in your terminal:
+<pre><code>
+ * Serving Flask app 'flask_main'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+</code></pre>
+Point your web browser to http://127.0.0.1:5000 to access the user interface of this software.
 ## Run tests
 1. pytest
 
