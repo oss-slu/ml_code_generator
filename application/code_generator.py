@@ -37,10 +37,16 @@ class CodeGenerator:
       self._save('Y', y_values)
 
    def split_data(self, train_ratio = 0.8, seed = 200):
-      (train, test) = self._parse_and_execute('split',['X',train_ratio,seed])
-      self.data['train'] = train
-      self.data['test'] = test
-      return self.data['train'].shape
+      (X_train, X_test, y_train, y_test) = self._parse_and_execute('split',['X', 'Y', train_ratio, seed])
+      self.save('X_train', X_train)
+      self.save('X_test', X_test)
+      self.save('y_train', y_train)
+      self.save('y_test', y_test)
+      return self.data['X_train'].shape
+
+   def train_model(self, train_data, train_labels):
+      model = self._parse_and_execute('train_model', [train_data, train_labels])
+      return model
 
    def download_code(self):
       return self.blocks.to_text()

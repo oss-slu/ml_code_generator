@@ -8,12 +8,15 @@ def run_generator(args):
    input_file = args[1]
    generator = code_generator.CodeGenerator(template_mapping, parse_template)
    generator.load_data(input_file)
+   #print("shape: ", generator.load_data(input_file))
    data_summary = generator.describe_data()
    print(data_summary.to_csv())
    clean_data = generator.clean_data()
    print(clean_data)
    print(generator.get_labels())
    print(generator.split_data())
+   train_data = generator.split_data()
+   print(generator.train_model(train_data[0], train_data[1]))
    code = generator.download_code()
    print(code)
 #process the arguments

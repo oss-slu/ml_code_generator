@@ -2,3 +2,5 @@ gunicorn
 pandas
 flask
 pytest
+sklearn
+numpy
