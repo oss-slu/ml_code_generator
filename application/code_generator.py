@@ -37,15 +37,17 @@ class CodeGenerator:
       self._save('Y', y_values)
 
    def split_data(self, train_ratio = 0.8, seed = 200):
-      (X_train, X_test, y_train, y_test) = self._parse_and_execute('split',['X', 'Y', train_ratio, seed])
-      self.save('X_train', X_train)
-      self.save('X_test', X_test)
-      self.save('y_train', y_train)
-      self.save('y_test', y_test)
+      (x_train, x_test, y_train, y_test)=self._parse_and_execute('split',['X','Y',train_ratio,seed])
+      self._save('X_train', x_train)
+      self._save('X_test', x_test)
+      self._save('y_train', y_train)
+      self._save('y_test', y_test)
+      print("shape X_train: \n", x_train.shape)
+      print("shape y_train: \n", y_train.shape)
       return self.data['X_train'].shape
 
-   def train_model(self, train_data, train_labels):
-      model = self._parse_and_execute('train_model', [train_data, train_labels])
+   def train_model(self):
+      model = self._parse_and_execute('train_model', ['X_train', 'y_train'])
       return model
 
    def download_code(self):
@@ -71,7 +73,7 @@ class CodeGenerator:
 
       (comments, code) = self.parse_template(template, string_args)
       self._create_new_block(comments[0], code)
-      output = self.function_mapping[template](replaced_args)
+      output = self.function_mapping[template](replaced_args)  # where the code is executed
       return output
 
    def _save(self, key, value):
