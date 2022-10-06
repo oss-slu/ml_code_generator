@@ -13,10 +13,11 @@ def run_generator(args):
    print(data_summary.to_csv())
    clean_data = generator.clean_data()
    print(clean_data)
-   print(generator.get_labels())
+   print(generator.get_labels())     # feature names
+   print("labels: \n", generator.select_y("eye"))
    print(generator.split_data())
    train_data = generator.split_data()
-   print(generator.train_model(train_data[0], train_data[1]))
+   print(generator.train_model())
    code = generator.download_code()
    print(code)
 #process the arguments

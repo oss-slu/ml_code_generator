@@ -42,3 +42,11 @@ def test_two_args_per_line():
    args=["'kate'", '5']
    line_replaced = replace_args_with_values(line, args)
    assert line_replaced=='print(\'kate\',5)'
+
+def test_three_args_per_line():
+   line = 'print(args[0],args[1],args[2])'
+   args=["'kate'", '5', "'data'"]
+   line_replaced = replace_args_with_values(line, args)
+   assert line_replaced=='print(\'kate\',5,\'data\')'
+
+
