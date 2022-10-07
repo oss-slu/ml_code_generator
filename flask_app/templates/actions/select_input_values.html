@@ -11,7 +11,7 @@
    <form action="/input_labels" method="post">
       <div>
           {% for label in labels %}
-             <input type="checkbox" name="drop_labels" value= "{{label}}" SELECTED>{{label}}</option>"
+             <input type="checkbox" name="drop_labels" value="{{label}}">{{label}}</input>"
           {% endfor %}
       </div>
 
