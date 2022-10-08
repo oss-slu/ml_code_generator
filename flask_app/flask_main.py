@@ -50,7 +50,7 @@ def split_data():
 @app.route('/input_labels', methods=['GET', 'POST'])
 def get_input_labels():
    if request.method == 'POST':
-      request_dict = request.form.to_dict()
+      request_dict = request.form.to_dict(flat=False)
       generator.drop_x(request_dict['drop_labels'])
       return render_template('actions/actions.html')
 
