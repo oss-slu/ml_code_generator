@@ -2,6 +2,20 @@
 
 {% block content %}
 <div class="information">
-   <p>Training data contains {{num_rows_train}} rows</p>
+   {% if submit != True %}
+   <p>Enter Train Data Ratio (Normally 80% or 70%)</p>
+   <p>Remaining Data from your Dataset will be considered as Test Data</p>
+   <form action="/split" method="post">
+      Training Data : <input type="number" name="td">%
+      <br><br><br>
+      <input type="submit" value="submit">
+   {% endif %}
+      {% if submit %}
+      <p>Your Selection : Train Data Ratio {{traindata}}% & Test Data Ratio {{100-traindata}}% </p>
+      <p>Training Data Contains {{num_rows_train}} Rows</p>
+      <p>Test Data Contains {{(num_rows_train*(100-traindata))//(traindata)}} Rows</p>
+
+      {% endif %}
+   </form>
 </div>
 {% endblock %}
