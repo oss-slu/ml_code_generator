@@ -1,0 +1,35 @@
+<!doctype html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+   <h2>Select your training ratio value</h2>
+   <p class="p-form">
+      Define the size your training data.
+   </p>
+   <form class="form-training-ratio" action="/split" method="post">
+      <div>
+         <label for="trainingRatioRange">Ratio of training to test data: <span id="rangeValue">80</span>%</label>
+         <div class="sliderContainer">
+            <input type="range" min="10" max="90" value="80" step="10" class="slider" name="trainingRatioRange" id="trainingRatioRange">
+          </div>
+      </div>
+
+      <input class="action" type="submit" value="Submit" />
+   </form>
+   <script>
+      /* This code was added here because the application is not using JavaScript
+      at any other part. It might should be moved to a JS lib in the future. */
+      
+      var slider = document.getElementById("trainingRatioRange");
+      var output = document.getElementById("rangeValue");
+      output.innerHTML = slider.value; // Display the default slider value
+
+      // Update the current slider value (each time you drag the slider handle)
+      slider.oninput = function() {
+         output.innerHTML = this.value;
+      }
+   </script>
+</div>
+{% endblock %}
