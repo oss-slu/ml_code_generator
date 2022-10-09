@@ -46,6 +46,7 @@ def clean_data():
 def split_data():
    train_data_size = generator.split_data()
    return render_template('info/splitting_summary.html', num_rows_train=train_data_size[0])
+      return render_template('actions/select_train_ratio_value.htmlk')
 
 @app.route('/input_labels', methods=['GET', 'POST'])
 def get_input_labels():
