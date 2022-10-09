@@ -49,8 +49,8 @@ def split_data():
       training_ratio = int(request_dict['trainingRatioRange'])/100
       train_data_size = generator.split_data(training_ratio)
       return render_template('info/splitting_summary.html', num_rows_train=train_data_size[0])
-   elif request.method == 'GET':
-      return render_template('actions/select_training_ratio_value.html')
+
+   return render_template('actions/select_training_ratio_value.html')
 
 @app.route('/input_labels', methods=['GET', 'POST'])
 def get_input_labels():
