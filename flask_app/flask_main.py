@@ -42,11 +42,15 @@ def clean_data():
    num_rows_removed = original_data_size[0]-cleaned_data_size[0]
    return render_template('info/cleaning_summary.html', removed_rows=num_rows_removed)
 
-@app.route('/split', methods=['GET'])
+@app.route('/split', methods=['GET', 'POST'])
 def split_data():
-   train_data_size = generator.split_data()
-   return render_template('info/splitting_summary.html', num_rows_train=train_data_size[0])
-      return render_template('actions/select_train_ratio_value.htmlk')
+   if request.method == 'POST':
+      request_dict = request.form.to_dict()
+      training_ratio = int(request_dict['trainingRatioRange'])/100
+      train_data_size = generator.split_data(training_ratio)
+      return render_template('info/splitting_summary.html', num_rows_train=train_data_size[0])
+   elif request.method == 'GET':
+      return render_template('actions/select_training_ratio_value.html')
 
 @app.route('/input_labels', methods=['GET', 'POST'])
 def get_input_labels():
