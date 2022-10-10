@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 {% extends 'base.html' %}
 
@@ -18,3 +19,25 @@
       <input class="action" type="submit" value="Submit Selection" />
 </div>
 {% endblock %}
+=======
+<!doctype html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+   <h2> Select your input values</h2>
+   <p>
+      Pick your the values you want to <b>exclude</b> from this model.
+   </p>
+   <form action="/input_labels" method="post">
+      <div>
+          {% for label in labels %}
+             <input type="checkbox" name="drop_labels" value="{{label}}">{{label}}</input>"
+          {% endfor %}
+      </div>
+
+      <input class="action" type="submit" value="Submit Selection" />
+</div>
+{% endblock %}
+>>>>>>> 637eca6c97846c28e720e0c14ecbd90b7d3ca549
