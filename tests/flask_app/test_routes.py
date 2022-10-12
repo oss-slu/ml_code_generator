@@ -1,5 +1,5 @@
-import pytest
 import io
+import pytest
 
 from flask_app.flask_main import create_app
 
