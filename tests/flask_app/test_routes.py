@@ -3,13 +3,13 @@ import io
 
 from flask_app.flask_main import create_app
 
-@pytest.fixture
-def client():
+@pytest.fixture(name="client")
+def fixture_client():
    app = create_app()
    app.config["TESTING"] = True
    app.config["UPLOAD_FOLDER"] = 'tests/flask_app/test_data'
-   with app.test_client() as client:
-      yield client
+   with app.test_client() as flask_client:
+      yield flask_client
 
 def test_get_upload_page(client):
    response = client.get('/data')
