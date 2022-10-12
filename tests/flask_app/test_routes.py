@@ -15,7 +15,7 @@ def test_get_upload_page(client):
    response = client.get('/data')
    assert response.status_code == 200
 
-def test_post_upload_page(client):
+def test_upload_file(client):
    data = {
       'file': (io.BytesIO(b"some random data"), "test_data.fake")
    }
