@@ -15,8 +15,7 @@ app = Flask(__name__, template_folder='templates')
 UPLOAD_FOLDER = 'data/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 generator = code_generator.CodeGenerator(template_mapping, parse_template)
-#print(generator)
-uploaded = False
+
 @app.route('/')
 def welcome():
     return render_template('home.html')
@@ -34,7 +33,7 @@ def describe_data():
     description = generator.describe_data()
     return render_template('info/description.html', table=description.to_html())
 
-#Added Start Over Option
+#added start over option in base.html to clear the previous block of code
 @ app.route('/start_over', methods=['GET'])
 def start_over():
     generator.resetone()
@@ -47,20 +46,10 @@ def clean_data():
     num_rows_removed = original_data_size[0]-cleaned_data_size[0]
     return render_template('info/cleaning_summary.html', removed_rows=num_rows_removed)
 
-@ app.route('/split', methods=['GET', 'POST'])
+@app.route('/split', methods=['GET'])
 def split_data():
-    global splitted
-    if request.method == 'POST':
-        td = request.form["td"]
-        splitted = False
-        submitted = True
-        print(td)
-        train_data_size = generator.split_data(
-            train_ratio=(int(td)/100), seed=200)
-    else:
-        return render_template('info/splitting_summary.html')
-
-    return render_template('info/splitting_summary.html',num_rows_train=train_data_size[0], traindata=int(td),  submit=submitted)
+   train_data_size = generator.split_data()
+   return render_template('info/splitting_summary.html', num_rows_train=train_data_size[0])
 
 @ app.route('/input_labels', methods=['GET', 'POST'])
 def get_input_labels():
@@ -83,9 +72,6 @@ def get_data_labels():
     return render_template('actions/select_output_value.html', labels=keys)
 #   return render_template('labels.html', labels=keys)
 
-   #  global uploaded
-   #  uploaded = False
-
 @ app.route('/data', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -104,9 +90,9 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # return redirect(url_for('download_file', name=filename))
-            uploaded = True
-            generator.resetone()
             print(g)
+            #call to resetone() in class CodeGenerator in code_generator.py
+            generator.resetone()
             with app.app_context():
                 generator.load_data(app.config['UPLOAD_FOLDER']+'/'+filename)
             return render_template('actions/actions.html')
@@ -116,10 +102,6 @@ def upload_file():
 @ app.route('/actions')
 def next_actions():
     return render_template('actions/actions.html')
-
-@ app.route('/clear_data')
-def clear_data():
-    return render_template('actions/upload_data.html')
 
 # main driver function
 if __name__ == '__main__':

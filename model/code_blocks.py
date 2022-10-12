@@ -6,7 +6,6 @@ class CodeBlock:
       self.statements = statements
 
    def to_text(self):
-      #print("I am in to text") 
       text_value = "#"+self.comment+"\n"
       for statement in self.statements:
          text_value += statement+"\n"
@@ -19,6 +18,7 @@ class AllBlocks:
    def __init__(self):
       self.blocks = deque()
    
+   #clear previously insetred blocks of code
    def resetAll(self):
       self.blocks = deque()
        
@@ -35,5 +35,4 @@ class AllBlocks:
       pass
 
    def add_next_block(self, next_block):
-      #print("I am in add next block") 
       self.blocks.append(next_block)

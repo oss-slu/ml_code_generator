@@ -2,31 +2,31 @@
 
 {% block content %}
 <div class="information" id="code">
-    {% for para in text.split('\n') %}
-    <p>{{para}}</p>
-    {% endfor %}
+   {% for para in text.split('\n') %}
+       <p>{{para}}</p>
+   {% endfor %}
 </div>
 <div class="action">
-    <button class="action">Copy Code</button>
-    <div>
-        <script>
-            var copyBtn = document.querySelector('.action');
-            copyBtn.addEventListener('click', function (event) {
-                // Select the email link anchor text  
-                var code = document.querySelector('.information');
-                var range = document.createRange();
-                range.selectNode(code);
-                window.getSelection().addRange(range);
-                try {
-                    // Now that we've selected the anchor text, execute the copy command  
-                    var successful = document.execCommand('copy');
-                    var msg = successful ? 'Code copied to your clipboard' : 'Unable to copy';
-                    alert(msg);
-                } catch (err) {
-                    alert('Unable to copy');
-                }
-                // Remove the selections
-                window.getSelection().removeAllRanges();
-            });
-        </script>
-        {% endblock %}
+     <button class="action">Copy Code</button>
+<div>
+<script>
+    var copyBtn = document.querySelector('.action');
+    copyBtn.addEventListener('click', function(event) {
+        // Select the email link anchor text  
+        var code = document.querySelector('.information');
+        var range = document.createRange();
+        range.selectNode(code);
+        window.getSelection().addRange(range);
+        try {
+            // Now that we've selected the anchor text, execute the copy command  
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'Code copied to your clipboard' : 'Unable to copy';
+            alert(msg);
+        } catch(err) {
+            alert('Unable to copy');
+        }
+        // Remove the selections
+        window.getSelection().removeAllRanges();
+    });
+</script>
+{% endblock %}
