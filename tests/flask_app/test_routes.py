@@ -26,7 +26,7 @@ def test_download_get_method(client):
    response = client.get('/download')
    assert response.status_code == 200
 
-def test_describe_get_method(client):
+def test_clean_get_method(client):
    data = {
       'file': (io.BytesIO(b"some random data"), "test_data.fake")
    }
