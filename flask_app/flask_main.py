@@ -36,10 +36,10 @@ def describe_data():
    return render_template('info/description.html',table=description.to_html())
 
 #added start over option in base.html to clear the previous block of code
-@ app.route('/start_over', methods=['GET'])
+@app.route('/start_over', methods=['GET'])
 def start_over():
-    generator.resetone()
-    return render_template('home.html')
+   generator.resetone()
+   return render_template('home.html')
 
 @app.route('/clean', methods=['GET'])
 def clean_data():
@@ -79,8 +79,8 @@ def upload_file():
    if request.method == 'POST':
       # check if the post request has the file part
       if 'file' not in request.files:
-          flash('No file part')
-          return redirect(request.url)
+         flash('No file part')
+         return redirect(request.url)
 
       file = request.files['file']
       # If the user does not select a file, the browser submits an
@@ -96,7 +96,7 @@ def upload_file():
          #call to resetone() in class CodeGenerator in code_generator.py
          generator.resetone()
          with app.app_context():
-             generator.load_data(app.config['UPLOAD_FOLDER']+'/'+filename)
+            generator.load_data(app.config['UPLOAD_FOLDER']+'/'+filename)
          return render_template('actions/actions.html')
 
    return render_template('actions/upload_data.html')
