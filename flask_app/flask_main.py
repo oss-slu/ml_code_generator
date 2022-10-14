@@ -55,6 +55,11 @@ def create_app():
 
       return render_template('actions/select_training_ratio_value.html')
 
+   @app.route('/train', methods=['GET'])
+   def train_model():
+      trained_model = generator.train_model()
+      return render_template('actions/train_model.html', trained=trained_model)
+
    @app.route('/input_labels', methods=['GET', 'POST'])
    def get_input_labels():
       if request.method == 'POST':
