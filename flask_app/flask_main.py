@@ -27,7 +27,6 @@ def create_app():
    app.secret_key = os.urandom(24)
    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
    app.config['TESTING']=True
-   app.config['SERVER_NAME']='127.0.0.1:5000'
    app.config['GOOGLE_CLIENT_ID']=os.environ.get("GOOGLE_CLIENT_ID", None)
    app.config['GOOGLE_CLIENT_SECRET']=os.environ.get("GOOGLE_CLIENT_SECRET", None)
    app.config['GOOGLE_DISCOVERY_URL']='https://accounts.google.com/.well-known/openid-configuration'
@@ -35,7 +34,6 @@ def create_app():
    generator = code_generator.CodeGenerator(template_mapping, parse_template)
    oauth = OAuth(app)
 
-   client = oauth2.WebApplicationClient(app.config['GOOGLE_CLIENT_ID'])
    @app.route('/')
    def welcome():
       return render_template('home.html')
