@@ -1,4 +1,6 @@
-gunicorn
 pandas
 flask
 pytest
+requests
+python-dotenv
+Authlib

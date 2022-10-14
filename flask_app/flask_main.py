@@ -1,26 +1,41 @@
 import os
 
+from dotenv import load_dotenv
 from flask import g
 from flask import Flask
 from flask import render_template
 from flask import request, redirect, flash
+from flask import session
+from flask import url_for
+from authlib.integrations.flask_client import OAuth
 from werkzeug.utils import secure_filename
 
 from application import code_generator
 from pandas_code.mapping import template_mapping
 from pandas_code.parse_template import parse_template
 
-
 ALLOWED_EXTENSIONS = {'csv'}
 
 UPLOAD_FOLDER='data/'
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir, '.env'))
+
 def create_app():
 
    app = Flask(__name__, template_folder='templates')
+   app.secret_key = os.urandom(24)
    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-   generator = code_generator.CodeGenerator(template_mapping, parse_template)
+   app.config['TESTING']=True
+   app.config['SERVER_NAME']='127.0.0.1:5000'
+   app.config['GOOGLE_CLIENT_ID']=os.environ.get("GOOGLE_CLIENT_ID", None)
+   app.config['GOOGLE_CLIENT_SECRET']=os.environ.get("GOOGLE_CLIENT_SECRET", None)
+   app.config['GOOGLE_DISCOVERY_URL']='https://accounts.google.com/.well-known/openid-configuration'
 
+   generator = code_generator.CodeGenerator(template_mapping, parse_template)
+   oauth = OAuth(app)
+
+   client = oauth2.WebApplicationClient(app.config['GOOGLE_CLIENT_ID'])
    @app.route('/')
    def welcome():
       return render_template('home.html')
@@ -105,6 +120,27 @@ def create_app():
    def next_actions():
       return render_template('actions/actions.html')
 
+   @app.route('/login')
+   def login():
+      oauth.register(
+         name='google',
+         client_id=app.config['GOOGLE_CLIENT_ID'],
+         client_secret=app.config['GOOGLE_CLIENT_SECRET'],
+         server_metadata_url=app.config['GOOGLE_DISCOVERY_URL'],
+         client_kwargs={
+            'scope': 'openid email profile'
+         }
+      )
+      redirect_uri = url_for('login_callback', _external=True)
+      return oauth.google.authorize_redirect(redirect_uri)
+
+   @app.route('/login/callback')
+   def login_callback():
+      token=oauth.google.authorize_access_token()
+      print("token is ", token)
+      session['userinfo']=token['userinfo']
+      session['access_token']=token['access_token']
+      return redirect('/')
    return app
 
 # main driver function
