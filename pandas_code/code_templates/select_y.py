@@ -1,5 +1,4 @@
 # split the data set into training and test data
-import pandas as pd
 
 def get_code(args):
    y_values = args[0][args[1]]

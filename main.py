@@ -16,8 +16,7 @@ def run_generator(args):
    generator.select_y("eye")
    generator.drop_x('Pop')  # note: can only drop one thing at a time at the moment
    generator.drop_x('sex')
-   train_data = generator.split_data()
-   print(train_data)
+   print(generator.split_data())
    print(generator.train_model())
    code = generator.download_code()
    print(code)
