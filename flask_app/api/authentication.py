@@ -1,7 +1,7 @@
 from flask import current_app
 from flask import url_for
 from flask import session
-from flask import render_template, redirect
+from flask import redirect
 
 from authlib.integrations.flask_client import OAuth
 
@@ -25,4 +25,3 @@ def login_callback():
    session['userinfo']=token['userinfo']
    session['access_token']=token['access_token']
    return redirect('/')
-
