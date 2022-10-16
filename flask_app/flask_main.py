@@ -1,14 +1,4 @@
-import os
-
-from flask import g
 from flask import Flask
-from flask import render_template
-from flask import request, redirect, flash
-from werkzeug.utils import secure_filename
-
-from application import code_generator
-from pandas_code.mapping import template_mapping
-from pandas_code.parse_template import parse_template
 
 from flask_app.api.config import UPLOAD_FOLDER
 import flask_app.api.views as views
@@ -18,7 +8,6 @@ def create_app():
 
    app = Flask(__name__, template_folder='templates')
    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-   generator = code_generator.CodeGenerator(template_mapping, parse_template)
 
    app.add_url_rule('/', view_func=views.welcome, methods=['GET'])
    app.add_url_rule('/download', view_func=views.download_code, methods=['GET'])
