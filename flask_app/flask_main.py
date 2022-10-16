@@ -1,7 +1,7 @@
 from flask import Flask
 
 from flask_app.api.config import UPLOAD_FOLDER
-import flask_app.api.views as views
+from flask_app.api import views
 
 
 def create_app():
