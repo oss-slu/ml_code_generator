@@ -43,7 +43,7 @@ class CodeGenerator:
       self._save('X_test', x_test)
       self._save('y_train', y_train)
       self._save('y_test', y_test)
-      #return self.data['X_train'].shape
+      return self.data['X_train'].shape
 
    def train_model(self):
       model = self._parse_and_execute('train_model', ['X_train', 'y_train'])
