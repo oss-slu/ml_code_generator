@@ -37,10 +37,19 @@ class CodeGenerator:
       self._save('Y', y_values)
 
    def split_data(self, train_ratio = 0.8, seed = 200):
-      (train, test) = self._parse_and_execute('split',['X',train_ratio,seed])
-      self.data['train'] = train
-      self.data['test'] = test
-      return self.data['train'].shape
+      # the ordering of x/y train/test is different here but I don't know why
+      (x_train, y_train, x_test, y_test)=self._parse_and_execute(
+         'split',['X','Y',1-train_ratio,seed]
+      )
+      self._save('X_train', x_train)
+      self._save('X_test', x_test)
+      self._save('y_train', y_train)
+      self._save('y_test', y_test)
+      return self.data['X_train'].shape
+
+   def train_model(self):
+      model = self._parse_and_execute('train_model', ['X_train', 'y_train'])
+      return model
 
    def download_code(self):
       return self.blocks.to_text()
@@ -65,7 +74,7 @@ class CodeGenerator:
 
       (comments, code) = self.parse_template(template, string_args)
       self._create_new_block(comments[0], code)
-      output = self.function_mapping[template](replaced_args)
+      output = self.function_mapping[template](replaced_args)  # where the code is executed
       return output
 
    def _save(self, key, value):
