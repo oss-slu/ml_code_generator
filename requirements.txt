@@ -1,6 +1,9 @@
-gunicorn
 pandas
 flask
 pytest
+requests
+python-dotenv
+Authlib
+pylint
 sklearn
 numpy
