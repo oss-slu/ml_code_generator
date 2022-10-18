@@ -83,7 +83,7 @@ def upload_file():
    return render_template('actions/upload_data.html')
 
 def train_model():
-   trained_model = generator.train_model()
+   generator.train_model()
    return download_code()
 
 def next_actions():
