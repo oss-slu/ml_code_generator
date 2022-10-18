@@ -38,7 +38,9 @@ class CodeGenerator:
 
    def split_data(self, train_ratio = 0.8, seed = 200):
       # the ordering of x/y train/test is different here but I don't know why
-      (x_train, y_train, x_test, y_test)=self._parse_and_execute('split',['X','Y',1-train_ratio,seed])
+      (x_train, y_train, x_test, y_test)=self._parse_and_execute(
+         'split',['X','Y',1-train_ratio,seed]
+      )
       self._save('X_train', x_train)
       self._save('X_test', x_test)
       self._save('y_train', y_train)
