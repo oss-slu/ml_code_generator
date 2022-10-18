@@ -1,5 +1,4 @@
 import os
-
 from flask import g
 from flask import Flask
 from flask import render_template
@@ -51,6 +50,7 @@ def create_app():
          request_dict = request.form.to_dict()
          training_ratio = int(request_dict['trainingRatioRange'])/100
          train_data_size = generator.split_data(training_ratio)
+         print (train_data_size)
          return render_template('info/splitting_summary.html', num_rows_train=train_data_size[0])
 
       return render_template('actions/select_training_ratio_value.html')
