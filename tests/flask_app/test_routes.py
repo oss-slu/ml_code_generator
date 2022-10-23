@@ -1,7 +1,6 @@
 import io
-import pytest
-
 from unittest import TestCase
+
 from flask_app.flask_main import create_app
 
 
@@ -65,12 +64,12 @@ class TestRoutes(TestCase):
 
    def test_input_labels_post_method(self):
       csv = "tests/flask_app/test_data/fake_data.csv"
-      csv_data = open(csv, "rb")
-      data = {"file": (csv_data, "sample_data.csv")}
-      response = self.client.post('/data', data=data)
-      response = self.client.get('/input_labels')
-      response = self.client.post('/input_labels', data={'drop_labels':'a'})
-      assert response.status_code == 200
+      with open(csv, "rb") as csv_data:
+         data = {"file": (csv_data, "sample_data.csv")}
+         response = self.client.post('/data', data=data)
+         response = self.client.get('/input_labels')
+         response = self.client.post('/input_labels', data={'drop_labels':'a'})
+         assert response.status_code == 200
 
    def test_labels_get_method(self):
       csv = "tests/flask_app/test_data/fake_data.csv"
@@ -82,11 +81,12 @@ class TestRoutes(TestCase):
 
    def test_labels_post_method(self):
       csv = "tests/flask_app/test_data/fake_data.csv"
-      csv_data = open(csv, "rb")
-      data = {"file": (csv_data, "sample_data.csv")}
-      self.client.get('/download')
-      response = self.client.post('/data', data=data)
-      response = self.client.get('/labels')
-      response = self.client.post('/labels', data={'label':'a'})
-      assert (response.status_code == 200 or response.status_code == 302)
-      
+      with open(csv, "rb") as csv_data:
+         data = {"file": (csv_data, "sample_data.csv")}
+         self.client.get('/download')
+         response = self.client.post('/data', data=data)
+         response = self.client.get('/labels')
+         response = self.client.post('/labels', data={'label':'a'})
+         # 302 is a successful redirect code
+         # /labels redirects to /input_labels
+         assert (response.status_code in [200, 302])
