@@ -12,7 +12,7 @@ class CodeGenerator:
    def load_data(self, csv_file):
       dataframe = self._parse_and_execute('read_csv', [csv_file])
       self._save('dataframe', dataframe)
-      #self._save('x_values', dataframe)
+      self._save('x_values', dataframe)
       return self.data['dataframe'].shape
 
    def describe_data(self):
