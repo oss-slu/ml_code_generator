@@ -12,7 +12,7 @@ class CodeGenerator:
    def load_data(self, csv_file):
       dataframe = self._parse_and_execute('read_csv', [csv_file])
       self._save('dataframe', dataframe)
-      self._save('X', dataframe)
+      #self._save('x_values', dataframe)
       return self.data['dataframe'].shape
 
    def describe_data(self):
@@ -28,18 +28,18 @@ class CodeGenerator:
       return keys.values.tolist()
 
    def select_y(self, output_label):
-      x, y = self._parse_and_execute('select_y', ['dataframe', output_label])
-      self._save('X', x)
-      self._save('Y', y)
+      x_values, y_values = self._parse_and_execute('select_y', ['dataframe', output_label])
+      self._save('x_values', x_values)
+      self._save('y_values', y_values)
 
    def drop_x(self, input_labels):
-      x = self._parse_and_execute('drop_x', ['X', input_labels])
-      self._save('X', x)
+      x_values = self._parse_and_execute('drop_x', ['x_values', input_labels])
+      self._save('x_values', x_values)
 
    def split_data(self, train_ratio = 0.8, seed = 200):
       # the ordering of x/y train/test is different here but I don't know why
       (x_train, y_train, x_test, y_test)=self._parse_and_execute(
-         'split',['X','Y',1-train_ratio,seed]
+         'split',['x_values','y_values',1-train_ratio,seed]
       )
       self._save('x_train', x_train)
       self._save('x_test', x_test)
