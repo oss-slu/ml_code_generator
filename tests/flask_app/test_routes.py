@@ -62,14 +62,14 @@ def test_input_labels_get_method(client):
       response = client.get('/input_labels')
       assert response.status_code == 200
 
-#def test_input_labels_post_method(client):
-#   csv = "tests/flask_app/test_data/fake_data.csv"
-#   csv_data = open(csv, "rb")
-#   data = {"file": (csv_data, "sample_data.csv")}
-#   response = client.post('/data', data=data)
-#   response = client.get('/input_labels')
-#   response = client.post('/input_labels', data={'drop_label':'a'})
-#   assert response.status_code == 200
+def test_input_labels_post_method(client):
+   csv = "tests/flask_app/test_data/fake_data.csv"
+   csv_data = open(csv, "rb")
+   data = {"file": (csv_data, "sample_data.csv")}
+   response = client.post('/data', data=data)
+   response = client.get('/input_labels')
+   response = client.post('/input_labels', data={'drop_labels':'a'})
+   assert response.status_code == 200
 
 def test_labels_get_method(client):
    csv = "tests/flask_app/test_data/fake_data.csv"
@@ -79,11 +79,11 @@ def test_labels_get_method(client):
       response = client.get('/labels')
       assert response.status_code == 200
 
-#def test_labels_post_method(client):
-#   csv = "tests/flask_app/test_data/fake_data.csv"
-#   csv_data = open(csv, "rb")
-#   data = {"file": (csv_data, "sample_data.csv")}
-#   response = client.post('/data', data=data)
-#   response = client.get('/labels')
-#   response = client.post('/labels', data={'label':'a'})
-#   assert response.status_code == 200
+def test_labels_post_method(client):
+   csv = "tests/flask_app/test_data/fake_data.csv"
+   csv_data = open(csv, "rb")
+   data = {"file": (csv_data, "sample_data.csv")}
+   response = client.post('/data', data=data)
+   response = client.get('/labels')
+   response = client.post('/labels', data={'label':'a'})
+   assert response.status_code == 200
