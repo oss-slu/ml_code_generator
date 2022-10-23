@@ -28,13 +28,13 @@ class CodeGenerator:
       return keys.values.tolist()
 
    def select_y(self, output_label):
-      X, Y = self._parse_and_execute('select_y', ['dataframe', output_label])
-      self._save('X', X)
-      self._save('Y', Y)
+      x, y = self._parse_and_execute('select_y', ['dataframe', output_label])
+      self._save('X', x)
+      self._save('Y', y)
 
    def drop_x(self, input_labels):
-      X = self._parse_and_execute('drop_x', ['X', input_labels])
-      self._save('X', X)
+      x = self._parse_and_execute('drop_x', ['X', input_labels])
+      self._save('X', x)
 
    def split_data(self, train_ratio = 0.8, seed = 200):
       # the ordering of x/y train/test is different here but I don't know why
