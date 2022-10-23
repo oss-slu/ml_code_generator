@@ -24,31 +24,31 @@ class CodeGenerator:
       return self.data['dataframe'].shape
 
    def get_labels(self):
-      keys = self._parse_and_execute('get_keys', ['X'])
+      keys = self._parse_and_execute('get_keys', ['dataframe'])
       return keys.values.tolist()
 
-   def drop_x(self, input_labels):
-      x_values = self._parse_and_execute('drop_x', ['X', input_labels])
-      self._save('X', x_values)
-
    def select_y(self, output_label):
-      x_values, y_values = self._parse_and_execute('select_y', ['X', output_label])
-      self._save('X', x_values)
-      self._save('Y', y_values)
+      X, Y = self._parse_and_execute('select_y', ['dataframe', output_label])
+      self._save('X', X)
+      self._save('Y', Y)
+
+   def drop_x(self, input_labels):
+      X = self._parse_and_execute('drop_x', ['X', input_labels])
+      self._save('X', X)
 
    def split_data(self, train_ratio = 0.8, seed = 200):
       # the ordering of x/y train/test is different here but I don't know why
       (x_train, y_train, x_test, y_test)=self._parse_and_execute(
          'split',['X','Y',1-train_ratio,seed]
       )
-      self._save('X_train', x_train)
-      self._save('X_test', x_test)
+      self._save('x_train', x_train)
+      self._save('x_test', x_test)
       self._save('y_train', y_train)
       self._save('y_test', y_test)
-      return self.data['X_train'].shape
+      return self.data['x_train'].shape
 
    def train_model(self):
-      model = self._parse_and_execute('train_model', ['X_train', 'y_train'])
+      model = self._parse_and_execute('train_model', ['x_train', 'y_train'])
       return model
 
    def download_code(self):
