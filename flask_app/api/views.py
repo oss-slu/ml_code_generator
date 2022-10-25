@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 
 from flask_app.api.generator import generator
 from flask_app.api.utils import allowed_file
-
+import flask_app.api.map_paths #Why is this import not being recognized?
 
 def welcome():
    return render_template('home.html')
@@ -40,7 +40,7 @@ def get_input_labels():
    if request.method == 'POST':
       request_dict = request.form.to_dict(flat=False)
       generator.drop_x(request_dict['drop_labels'])
-      return render_template('actions/actions.html')
+      return render_template('actions/actions.html', next_actions=['actions/describe_data.html', 'actions/clean_data.html'])
 
    keys = generator.get_labels()
    return render_template('actions/select_input_values.html', labels=keys)
@@ -77,8 +77,9 @@ def upload_file():
 
          with current_app.app_context():
             generator.load_data(current_app.config['UPLOAD_FOLDER']+'/' + filename)
+            map_paths.mapp("upload_file") #Trying to import function here but it does not recognize the file name
 
-         return render_template('actions/actions.html')
+        #return render_template('actions/actions.html') #Use new mapping file. Should show view code and describe data actions
 
    return render_template('actions/upload_data.html')
 
@@ -88,3 +89,4 @@ def train_model():
 
 def next_actions():
    return render_template('actions/actions.html')
+
