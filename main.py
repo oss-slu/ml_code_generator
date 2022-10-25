@@ -8,16 +8,16 @@ def run_generator(args):
    input_file = args[1]
    generator = code_generator.CodeGenerator(template_mapping, parse_template)
    generator.load_data(input_file)
-   #data_summary = generator.describe_data()
-   #print(data_summary.to_csv())
+   data_summary = generator.describe_data()
+   print(data_summary.to_csv())
    clean_data = generator.clean_data()
    print(clean_data)
-   #print(generator.get_labels())     # feature names
+   print(generator.get_labels())     # feature names
    generator.select_y("eye")
-   #generator.drop_x('Pop')  # note: can only drop one thing at a time at the moment
-   #generator.drop_x('sex')
+   generator.drop_x('Pop')  # note: can only drop one thing at a time at the moment
+   generator.drop_x('sex')
    print(generator.split_data())
-   #print(generator.train_model())
+   print(generator.train_model())
    code = generator.download_code()
    print(code)
 #process the arguments
