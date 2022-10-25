@@ -40,8 +40,8 @@ def get_input_labels():
    if request.method == 'POST':
       request_dict = request.form.to_dict(flat=False)
       generator.drop_x(request_dict['drop_labels'])
-      return render_template('actions/actions.html', 
-                              next_actions=['actions/describe_data.html', 
+      return render_template('actions/actions.html',
+                              next_actions=['actions/describe_data.html',
                               'actions/clean_data.html'])
 
    keys = generator.get_labels()
@@ -79,11 +79,11 @@ def upload_file():
 
          with current_app.app_context():
             generator.load_data(current_app.config['UPLOAD_FOLDER']+'/' + filename)
-            map_paths.mapp("upload_file") 
+            map_paths.mapp("upload_file")
             #Trying to import function on line 82
             #but it does not recognize the file name
 
-        #return render_template('actions/actions.html') 
+        #return render_template('actions/actions.html')
         #Use new mapping file. Should show view code and describe data actions
 
    return render_template('actions/upload_data.html')
@@ -94,4 +94,3 @@ def train_model():
 
 def next_actions():
    return render_template('actions/actions.html')
-   

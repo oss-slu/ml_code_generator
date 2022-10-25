@@ -5,4 +5,3 @@ from flask import render_template
 def mapp(current_state):
    if current_state == "upload_data":
       return render_template('actions/actions.html', next_actions=['actions/decribe_data.html'])
-   return 0
