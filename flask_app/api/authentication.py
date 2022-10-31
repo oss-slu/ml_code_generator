@@ -3,9 +3,15 @@ from flask import url_for
 from flask import session
 from flask import redirect
 
+import flask
+
 from authlib.integrations.flask_client import OAuth
 
 oauth = OAuth(current_app)
+
+AUTH_TOKEN_KEY = 'auth_token'
+
+app = flask.Blueprint('authentication', __name__)
 
 def login():
    oauth.register(
@@ -25,3 +31,6 @@ def login_callback():
    session['userinfo']=token['userinfo']
    session['access_token']=token['access_token']
    return redirect('/')
+
+def is_logged_in():
+   return True if AUTH_TOKEN_KEY in flask.session else False
