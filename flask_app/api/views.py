@@ -8,9 +8,10 @@ from werkzeug.utils import secure_filename
 
 from flask_app.api.generator import generator
 from flask_app.api.utils import allowed_file
-from flask_app.api.map_paths import next_actions
+from flask_app.api.map_paths import correct_action
 
 def welcome():
+   current_state = 'welcome'
    return render_template('home.html')
 
 def download_code():
@@ -79,15 +80,17 @@ def upload_file():
          with current_app.app_context():
             generator.load_data(current_app.config['UPLOAD_FOLDER']+'/' + filename)
 
-        #return render_template('actions/actions.html') #Use new mapping file. 
+       #return render_template(next_actions = ('actions/actions.html', ) #Use new mapping file. 
         #Should show view code and describe data actions
-         return render_template(next_actions.get('upload'))
+         #correct_action()
 
-   #return render_template('actions/upload_data.html')
+   return render_template('actions/upload_data.html')
 
 def train_model():
    generator.train_model()
    return download_code()
 
 def next_actions():
-   return render_template('actions/actions.html')
+   #correct_action(current_state)
+   #return render_template('actions/actions.html')
+   return render_template('actions/actions.html', next_actions = ['actions/describe_data.html', 'actions/clean_data.html'])
