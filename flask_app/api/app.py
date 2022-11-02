@@ -20,7 +20,28 @@ app.register_blueprint(google_drive.app)
 @app.route('/')
 def index():
     if authentication.is_logged_in():
-        user_info = authentication.get_user_info()
-        return '<div>You are currently logged in as ' + user_info['given_name'] + '<div><pre>' + json.dumps(user_info, indent=4) + "</pre>"
+        return flask.render_template('list.html', user_info=google_auth.get_user_info())
 
     return 'You are not currently logged in.'
+
+def save_image(file_name, mime_type, file_data):
+    drive_api = build_drive_api_v3()
+
+    generate_ids_result = drive_api.generateIds(count=1).execute()
+    file_id = generate_ids_result['ids'][0]
+
+    body = {
+        'id': file_id,
+        'name': file_name,
+        'mimeType': mime_type,
+    }
+
+    media_body = MediaIoBaseUpload(file_data,
+                                   mimetype=mime_type,
+                                   resumable=True)
+
+    drive_api.create(body=body,
+                     media_body=media_body,
+                     fields='id,name,mimeType,createdTime,modifiedTime').execute()
+
+    return file_id

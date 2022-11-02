@@ -10,6 +10,7 @@ from authlib.integrations.flask_client import OAuth
 oauth = OAuth(current_app)
 
 AUTH_TOKEN_KEY = 'auth_token'
+AUTHORIZATION_SCOPE ='openid email profile https://www.googleapis.com/auth/drive.file'
 
 app = flask.Blueprint('authentication', __name__)
 
