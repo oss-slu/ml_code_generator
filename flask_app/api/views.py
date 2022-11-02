@@ -11,7 +11,7 @@ from flask_app.api.utils import allowed_file
 from flask_app.api.map_paths import correct_action
 
 def welcome():
-   current_state = 'welcome'
+   #current_state = 'welcome'
    return render_template('home.html')
 
 def download_code():
@@ -41,7 +41,7 @@ def get_input_labels():
    if request.method == 'POST':
       request_dict = request.form.to_dict(flat=False)
       generator.drop_x(request_dict['drop_labels'])
-      return render_template('actions/actions.html', 
+      return render_template('actions/actions.html',
          next_actions=['actions/describe_data.html', 'actions/clean_data.html'])
 
    keys = generator.get_labels()
@@ -80,7 +80,7 @@ def upload_file():
          with current_app.app_context():
             generator.load_data(current_app.config['UPLOAD_FOLDER']+'/' + filename)
 
-       #return render_template(next_actions = ('actions/actions.html', ) #Use new mapping file. 
+         return render_template('actions/actions.html')
         #Should show view code and describe data actions
          #correct_action()
 
@@ -91,6 +91,5 @@ def train_model():
    return download_code()
 
 def next_actions():
-   #correct_action(current_state)
+   return correct_action()
    #return render_template('actions/actions.html')
-   return render_template('actions/actions.html', next_actions = ['actions/describe_data.html', 'actions/clean_data.html'])
