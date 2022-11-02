@@ -33,7 +33,7 @@ def create_app():
    app.add_url_rule('/actions', view_func=views.next_actions, methods=['GET'])
    app.add_url_rule('/login', view_func=authentication.login, methods=['GET'])
    app.add_url_rule('/login/callback', view_func=authentication.login_callback, methods=['GET'])
-
+   app.add_url_rule('/login_page', view_func=views.login_page, methods=['GET'])
    return app
 
 # main driver function
