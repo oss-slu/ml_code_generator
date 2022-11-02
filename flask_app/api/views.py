@@ -11,7 +11,6 @@ from flask_app.api.utils import allowed_file
 from flask_app.api.map_paths import correct_action
 
 def welcome():
-   #current_state = 'welcome'
    return render_template('home.html')
 
 def download_code():
@@ -35,7 +34,7 @@ def split_data():
       train_data_size = generator.split_data(training_ratio)
       return render_template('info/splitting_summary.html', num_rows_train=train_data_size[0])
 
-   return render_template('actions/select_training_ratio_value.html')
+   return correct_action("split_data")
 
 def get_input_labels():
    if request.method == 'POST':
@@ -58,6 +57,7 @@ def get_data_labels():
    # return render_template('labels.html', labels=keys)
 
 def upload_file():
+   current_state = "upload"
    if request.method == 'POST':
       # check if the post request has the file part
       if 'file' not in request.files:
@@ -91,5 +91,5 @@ def train_model():
    return download_code()
 
 def next_actions():
-   return correct_action()
+   return correct_action("next_action")
    #return render_template('actions/actions.html')
