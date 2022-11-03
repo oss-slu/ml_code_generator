@@ -6,4 +6,6 @@ def correct_action(current_state):
    elif current_state == "upload":
       next_actions = ['actions/describe_data.html',
                      'actions/clean_data.html']
+   elif current_state == "get_input_labels":
+      next_actions=[]
    return render_template('actions/actions.html', next_actions)

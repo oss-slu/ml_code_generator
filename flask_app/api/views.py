@@ -40,8 +40,8 @@ def get_input_labels():
    if request.method == 'POST':
       request_dict = request.form.to_dict(flat=False)
       generator.drop_x(request_dict['drop_labels'])
-      return render_template('actions/actions.html',
-         next_actions=['actions/describe_data.html', 'actions/clean_data.html'])
+      #return render_template('actions/actions.html')
+      return correct_action('get_input_labels')
 
    keys = generator.get_labels()
    return render_template('actions/select_input_values.html', labels=keys)
@@ -57,7 +57,6 @@ def get_data_labels():
    # return render_template('labels.html', labels=keys)
 
 def upload_file():
-   current_state = "upload"
    if request.method == 'POST':
       # check if the post request has the file part
       if 'file' not in request.files:
@@ -81,7 +80,7 @@ def upload_file():
             generator.load_data(current_app.config['UPLOAD_FOLDER']+'/' + filename)
 
          return render_template('actions/actions.html')
-        #Should show view code and describe data actions
+         #Should show view code and describe data actions
          #correct_action()
 
    return render_template('actions/upload_data.html')
