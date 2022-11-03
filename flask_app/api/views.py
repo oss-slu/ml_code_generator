@@ -89,5 +89,3 @@ def train_model():
 def next_actions():
    return render_template('actions/actions.html')
 
-def login_page():
-   return render_template('actions/login_page.html')
