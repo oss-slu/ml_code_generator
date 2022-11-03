@@ -1,11 +1,9 @@
 from flask import render_template
-def correct_action(current_state):
+
+def correct_action(current_state):   
    next_actions = []
-   if current_state == "split_data":
-      next_actions = ['actions/select_training_ratio_value.html']
-   elif current_state == "upload":
-      next_actions = ['actions/describe_data.html',
-                     'actions/clean_data.html']
-   elif current_state == "get_input_labels":
-      next_actions=[]
+   
+   if current_state == 'welcome':
+      next_actions = ['actions/describe.html']
+
    return render_template('actions/actions.html', next_actions)
