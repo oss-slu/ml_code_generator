@@ -9,6 +9,9 @@ from werkzeug.utils import secure_filename
 from flask_app.api.generator import generator
 from flask_app.api.utils import allowed_file
 from flask_app.api.map_paths import correct_action
+#from flask_app.api.map_paths import current_action
+
+current_state = 'start'
 
 def welcome():
    return render_template('home.html')
@@ -34,14 +37,14 @@ def split_data():
       train_data_size = generator.split_data(training_ratio)
       return render_template('info/splitting_summary.html', num_rows_train=train_data_size[0])
 
-   return correct_action("split_data")
+   return render_template('actions/select_training_ratio_value.html')
 
 def get_input_labels():
    if request.method == 'POST':
       request_dict = request.form.to_dict(flat=False)
       generator.drop_x(request_dict['drop_labels'])
       #return render_template('actions/actions.html')
-      return correct_action('get_input_labels')
+      return render_template('actions/actions.html')
 
    keys = generator.get_labels()
    return render_template('actions/select_input_values.html', labels=keys)
@@ -90,5 +93,5 @@ def train_model():
    return download_code()
 
 def next_actions():
-   return correct_action("next_action")
+   return correct_action(current_state)
    #return render_template('actions/actions.html')
