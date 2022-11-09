@@ -1,11 +1,22 @@
 from flask import render_template
 
-def correct_action(current_state):   
-   actions = []
-   
+def correct_action(current_state):
+   actions = []   
    if current_state == 'start':
       actions = ['actions/upload_data.html']
+      #actions = ['actions/upload_data.html']
    elif current_state == 'upload':
-      actions = ['actions/describe.html']
+      actions = ['actions/describe_data.html']
+   elif current_state == 'describe':
+      actions = ['actions/prepare_model.html']
+      #actions = ['actions/select_output_value.html']
+   elif current_state ==  'data_labels' or 'input_values':
+      actions = ['actions/clean_data.html']
+   elif current_state == 'clean':
+      actions = ['actions/split_data.html']
+   elif current_state == 'split':
+      actions = ['actions/train_model.html']
+   elif current_state == 'train':
+      actions = ['actions/download_code.html']
 
    return render_template('actions/actions.html', next_actions = actions)
