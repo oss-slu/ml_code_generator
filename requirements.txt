@@ -5,5 +5,5 @@ requests
 python-dotenv
 Authlib
 pylint
-sklearn
+scikit-learn
 numpy
