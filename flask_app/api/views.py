@@ -21,6 +21,7 @@ def download_code():
    return render_template('info/code.html', text=code)
 
 def describe_data():
+   current_state = 'describe'
    description = generator.describe_data()
    return render_template('info/description.html', table=description.to_html())
 
@@ -60,6 +61,7 @@ def get_data_labels():
    # return render_template('labels.html', labels=keys)
 
 def upload_file():
+   current_state = 'upload'
    if request.method == 'POST':
       # check if the post request has the file part
       if 'file' not in request.files:
