@@ -31,7 +31,7 @@ def clean_data():
    original_data_size = generator.get_data().shape
    cleaned_data_size = generator.clean_data()
    num_rows_removed = original_data_size[0]-cleaned_data_size[0]
-   return render_template('info/cleaning_summary.html', removed_rows=num_rows_removed)
+   #return render_template('info/cleaning_summary.html', removed_rows=num_rows_removed)
 
 def split_data():
    session['current_state'] = 'split'
@@ -43,22 +43,23 @@ def split_data():
 
    return render_template('actions/select_training_ratio_value.html')
 
-def get_input_labels():
+def select_features():
    session['current_state'] = 'prepare'
    if request.method == 'POST':
       request_dict = request.form.to_dict(flat=False)
       generator.drop_x(request_dict['drop_labels'])
-      return correct_action(session['current_state'])
+      clean_data()
+      return redirect('/select_y')
 
    keys = generator.get_labels()
    return render_template('actions/select_input_values.html', labels=keys)
 
-def get_data_labels():
+def select_y():
    session['current_state'] = 'prepare'
    if request.method == 'POST':
       request_dict = request.form.to_dict()
       generator.select_y(request_dict['label'])
-      return redirect('/input_labels')
+      return correct_action(session['current_state'])
 
    keys = generator.get_labels()
    return render_template('actions/select_output_value.html', labels=keys)

@@ -9,8 +9,6 @@ def correct_action(current_state):
    elif current_state == 'describe':
       actions = ['actions/prepare_model.html']
    elif current_state == 'prepare':
-      actions = ['actions/clean_data.html']
-   elif current_state == 'clean':
       actions = ['actions/split_data.html']
    elif current_state == 'split':
       actions = ['actions/train_model.html']
