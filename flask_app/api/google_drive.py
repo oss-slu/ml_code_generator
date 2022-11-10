@@ -2,7 +2,7 @@ import io
 import tempfile
 
 import flask
-import flask_app.api.google_auth
+from flask_app.api.google_auth import build_credentials
 from apiclient.http import MediaIoBaseDownload, MediaIoBaseUpload
 import googleapiclient.discovery
 from werkzeug.utils import secure_filename
@@ -10,12 +10,12 @@ from werkzeug.utils import secure_filename
 app = flask.Blueprint('google_drive', __name__)
 
 def build_drive_api_v3():
-    credentials = google_auth.build_credentials()
+    credentials = build_credentials()
     return googleapiclient.discovery.build('drive', 'v3', credentials=credentials).files()
 
 def upload():
    if flask.request.method == 'POST':
-    creds = google_auth.build_credentials()
+    creds = build_credentials()
     try: 
         build_drive_api_v3()
         file_metadata = {'name': 'download.jpeg'}
