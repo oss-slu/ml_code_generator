@@ -11,7 +11,7 @@ def run_generator(args):
    data_summary = generator.describe_data()
    print(data_summary.to_csv())
    print(generator.get_labels())     # feature names
-   print("\n A THING", generator.drop_x('Pop'))  # note: can only drop one thing at a time at the moment
+   generator.drop_x('Pop')  # note: can only drop one thing at a time at the moment
    generator.drop_x('sex')
    clean_data = generator.clean_data()
    print(clean_data)
