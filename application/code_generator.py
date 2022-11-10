@@ -12,16 +12,11 @@ class CodeGenerator:
    def load_data(self, csv_file):
       dataframe = self._parse_and_execute('read_csv', [csv_file])
       self._save('dataframe', dataframe)
-      self._save('x_values', dataframe)
       return self.data['dataframe'].shape
 
    def describe_data(self):
       output = self._parse_and_execute('describe_data', ['dataframe'])
       return output
-
-   def clean_data(self):
-      self._parse_and_execute('clean_data', ['dataframe'])
-      return self.data['dataframe'].shape
 
    def get_labels(self):
       keys = self._parse_and_execute('get_keys', ['dataframe'])
@@ -33,8 +28,13 @@ class CodeGenerator:
       self._save('y_values', y_values)
 
    def drop_x(self, input_labels):
-      x_values = self._parse_and_execute('drop_x', ['x_values', input_labels])
-      self._save('x_values', x_values)
+      dataframe = self._parse_and_execute('drop_x', ['dataframe', input_labels])
+      self._save('dataframe', dataframe)
+
+   def clean_data(self):
+      dataframe = self._parse_and_execute('clean_data', ['dataframe'])
+      self._save('dataframe', dataframe)
+      return self.data['dataframe'].shape 
 
    def split_data(self, train_ratio = 0.8, seed = 200):
       # the ordering of x/y train/test is different here but I don't know why
