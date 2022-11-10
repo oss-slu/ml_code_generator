@@ -7,3 +7,4 @@ Authlib
 pylint
 sklearn
 numpy
+google-api-python-client
