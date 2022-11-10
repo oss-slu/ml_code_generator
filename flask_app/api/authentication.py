@@ -12,8 +12,25 @@ oauth = OAuth(current_app)
 AUTH_TOKEN_KEY = 'auth_token'
 AUTHORIZATION_SCOPE ='openid email profile https://www.googleapis.com/auth/drive.file'
 
-app = flask.Blueprint('authentication', __name__)
+app = flask.Blueprint('google_auth', __name__)
 
+def build_credentials():
+    oauth2_tokens = flask.session[AUTH_TOKEN_KEY]
+    return google.oauth2.credentials.Credentials(
+                oauth2_tokens['access_token'],
+                refresh_token=oauth2_tokens['refresh_token'],
+                client_id=CLIENT_ID,
+                client_secret=CLIENT_SECRET,
+                token_uri=ACCESS_TOKEN_URI)
+
+def get_user_info():
+    credentials = build_credentials()
+    oauth2_client = googleapiclient.discovery.build(
+                        'oauth2', 'v2',
+                        credentials=credentials)
+
+    return oauth2_client.userinfo().get().execute()
+ 
 def login():
    oauth.register(
       name='google',
@@ -34,4 +51,4 @@ def login_callback():
    return redirect('/')
 
 def is_logged_in():
-   return True if AUTH_TOKEN_KEY in flask.session else False
+   return True if session['access_token'] in flask.session else False
