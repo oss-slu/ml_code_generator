@@ -16,4 +16,3 @@ def correct_action(current_state):
       actions = ['actions/download_code.html']
 
    return render_template('actions/actions.html', next_actions = actions)
-   

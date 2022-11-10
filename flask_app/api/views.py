@@ -30,7 +30,6 @@ def clean_data():
    session['current_state'] = 'clean'
    original_data_size = generator.get_data().shape
    cleaned_data_size = generator.clean_data()
-   num_rows_removed = original_data_size[0]-cleaned_data_size[0]
    #return render_template('info/cleaning_summary.html', removed_rows=num_rows_removed)
 
 def split_data():
