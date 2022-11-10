@@ -2,7 +2,9 @@ from flask import current_app
 from flask import url_for
 from flask import session
 from flask import redirect
+import google.oauth2.credentials
 
+from flask_app.api import config
 import flask
 
 from authlib.integrations.flask_client import OAuth
@@ -15,13 +17,14 @@ AUTHORIZATION_SCOPE ='openid email profile https://www.googleapis.com/auth/drive
 app = flask.Blueprint('google_auth', __name__)
 
 def build_credentials():
-    oauth2_tokens = flask.session[AUTH_TOKEN_KEY]
+#    oauth2_tokens = flask.session[AUTH_TOKEN_KEY]
+#    oauth2_tokens =  session['access_token']
     return google.oauth2.credentials.Credentials(
-                oauth2_tokens['access_token'],
-                refresh_token=oauth2_tokens['refresh_token'],
-                client_id=CLIENT_ID,
-                client_secret=CLIENT_SECRET,
-                token_uri=ACCESS_TOKEN_URI)
+                session['access_token'],
+#                refresh_token=oauth2_tokens['refresh_token'],
+                client_id=config.GOOGLE_CLIENT_ID,
+                client_secret=config.GOOGLE_CLIENT_SECRET,
+                token_uri=config.ACCESS_TOKEN_URI)
 
 def get_user_info():
     credentials = build_credentials()
