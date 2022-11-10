@@ -4,12 +4,13 @@ from flask import g
 from flask import current_app
 from flask import render_template
 from flask import request, redirect, flash
+from flask import session
+
 from werkzeug.utils import secure_filename
 
 from flask_app.api.generator import generator
 from flask_app.api.utils import allowed_file
 from flask_app.api.map_paths import correct_action
-from flask import session
 
 def welcome():
    session['current_state'] = 'start'
