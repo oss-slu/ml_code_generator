@@ -9,15 +9,19 @@ from werkzeug.utils import secure_filename
 from flask_app.api.generator import generator
 from flask_app.api.utils import allowed_file
 from flask_app.api.map_paths import correct_action
+from flask import session
+
 #from flask_app.api.map_paths import current_action
 
 current_state = 'start'
 
 def welcome():
+   session['current_state'] = 'start'
    return render_template('home.html')
 
 def download_code():
    global current_state
+   session['current_state'] = 'download'
    current_state = 'download'
    code = generator.download_code()
    return render_template('info/code.html', text=code)
@@ -109,5 +113,5 @@ def train_model():
    return download_code()
 
 def next_actions():
-   return correct_action(current_state)
+   return correct_action(session['current_state'])
    #return render_template('actions/actions.html')
