@@ -49,7 +49,7 @@ def split_data():
 
 def get_input_labels():
    global current_state
-   current_state = 'input_values'
+   current_state = 'prepare'
    if request.method == 'POST':
       request_dict = request.form.to_dict(flat=False)
       generator.drop_x(request_dict['drop_labels'])
@@ -60,7 +60,7 @@ def get_input_labels():
 
 def get_data_labels():
    global current_state
-   current_state = 'data_labels'
+   current_state = 'prepare'
    if request.method == 'POST':
       request_dict = request.form.to_dict()
       generator.select_y(request_dict['label'])
