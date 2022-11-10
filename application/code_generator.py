@@ -34,7 +34,7 @@ class CodeGenerator:
    def clean_data(self):
       dataframe = self._parse_and_execute('clean_data', ['dataframe'])
       self._save('dataframe', dataframe)
-      return self.data['dataframe'].shape 
+      return self.data['dataframe'].shape
 
    def split_data(self, train_ratio = 0.8, seed = 200):
       # the ordering of x/y train/test is different here but I don't know why
