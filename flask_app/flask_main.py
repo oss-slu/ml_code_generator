@@ -31,8 +31,8 @@ def create_app():
    app.add_url_rule('/labels', view_func=views.get_data_labels, methods=['GET', 'POST'])
    app.add_url_rule('/data', view_func=views.upload_file, methods=['GET', 'POST'])
    app.add_url_rule('/actions', view_func=views.next_actions, methods=['GET'])
-   app.add_url_rule('/login', view_func=authentication.login, methods=['GET'])
-   app.add_url_rule('/login/callback', view_func=authentication.login_callback, methods=['GET'])
+   app.add_url_rule('/login', view_func=google_auth.login, methods=['GET'])
+   app.add_url_rule('/login/callback', view_func=google_auth.login_callback, methods=['GET'])
    return app
 
 # main driver function
