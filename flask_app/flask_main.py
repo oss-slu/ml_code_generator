@@ -2,7 +2,7 @@ import os
 from flask import Flask
 
 from flask_app.api import views
-from flask_app.api import authentication
+from flask_app.api import google_auth
 
 from flask_app.api.config import UPLOAD_FOLDER
 from flask_app.api.config import GOOGLE_CLIENT_ID
