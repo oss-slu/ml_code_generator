@@ -6,6 +6,7 @@ from pandas_code.code_templates import split
 from pandas_code.code_templates import select_y
 from pandas_code.code_templates import drop_x
 from pandas_code.code_templates import train_model
+from pandas_code.code_templates import train_model_c
 template_mapping = {
    'read_csv':read_csv.get_code,
    'describe_data':describe_data.get_code,
@@ -14,5 +15,6 @@ template_mapping = {
    'split':split.get_code,
    'select_y':select_y.get_code,
    'drop_x':drop_x.get_code,
-   'train_model':train_model.get_code
+   'train_model':train_model.get_code,
+   'train_model_c':train_model_c.get_code
 }

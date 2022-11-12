@@ -51,6 +51,10 @@ class CodeGenerator:
       model = self._parse_and_execute('train_model', ['x_train', 'y_train'])
       return model
 
+   def train_model_c(self):
+      model = self._parse_and_execute('train_model_c', ['x_train', 'y_train','x_test', 'y_test'])
+      return model   
+
    def download_code(self):
       return self.blocks.to_text()
 

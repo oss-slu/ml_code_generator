@@ -86,5 +86,9 @@ def train_model():
    generator.train_model()
    return download_code()
 
+def train_model_c():
+   generator.train_model_c()
+   return download_code()
+
 def next_actions():
    return render_template('actions/actions.html')
