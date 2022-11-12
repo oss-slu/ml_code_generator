@@ -23,11 +23,11 @@ running on your computer. Make sure to start Docker Desktop.
 ## Open the project in VS Code
 Start Visual Studio code and open your clone of this git repository. 
 
-## Install Remote-Containers extensions
-In Visual Studio code, click on the <a href="https://code.visualstudio.com/docs/editor/extension-marketplace">Extensions</a> icon and search for "Remote-Containers". Install the the remote containers extension.
+## Install Dev Containers extensions
+In Visual Studio code, click on the <a href="https://code.visualstudio.com/docs/editor/extension-marketplace">Extensions</a> icon and search for "Dev Containers". Install the the remote containers extension.
 
 ## Build and run the container
-In Visual Studio code, open the <a href="https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette">Command Palette</a> (you can also find the command palette by clicking on the gear icon at the bottom left corner). Type in: Remote-Containers: Reopen in Container, and select the option that matches what you typed. This will build a container and run your code in it. 
+In Visual Studio code, open the <a href="https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette">Command Palette (Ctrl+Shift+p)</a> (you can also find the command palette by clicking on the gear icon at the bottom left corner). Type in: Dev Containers: Reopen in Container, and select the option that matches what you typed. This will build a container and run your code in it. 
 
 ## Run the code
 Once the container is ready, open a terminal from VS code and run the application with:
