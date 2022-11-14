@@ -28,10 +28,12 @@ def build_credentials():
 
 def get_user_info():
    credentials = build_credentials()
+
    oauth2_client = googleapiclient.discovery.build(
                         'oauth2', 'v2',
                         credentials=credentials)
 
+   # pylint: disable=maybe-no-member
    return oauth2_client.userinfo().get().execute()
 
 def login():

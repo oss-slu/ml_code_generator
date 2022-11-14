@@ -11,6 +11,7 @@ app = flask.Blueprint('google_drive', __name__)
 
 def build_drive_api_v3():
    credentials = build_credentials()
+	# pylint: disable=maybe-no-member
    return googleapiclient.discovery.build('drive', 'v3', credentials=credentials).files()
 
 def save_image(file_name, mime_type, file_data):
@@ -52,6 +53,6 @@ def upload():
       file_data.seek(0)
 
       mime_type = flask.request.headers['Content-Type']
-      save_image(filename, mime_type, fp)
+      save_image(filename, mime_type, file_data)
 
    return flask.render_template('upload.html')
