@@ -13,6 +13,7 @@ from flask_app.api.config  import GOOGLE_DISCOVERY_URL
 def create_app():
    app = Flask(__name__, template_folder='templates')
    app.secret_key = os.urandom(24)
+   # pylint: disable=duplicate-code
    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
    app.config['GOOGLE_CLIENT_ID'] = GOOGLE_CLIENT_ID
    app.config['GOOGLE_CLIENT_SECRET'] = GOOGLE_CLIENT_SECRET
