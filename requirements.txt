@@ -7,4 +7,4 @@ Authlib
 pylint
 scikit-learn
 numpy
-scikit-learn
+google-api-python-client

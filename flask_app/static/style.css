@@ -52,12 +52,11 @@ li a {
 
 .container ul {
   display: flex;
-  justify-content: space-between;
-  width: 30%;
 }
 
 .container ul li {
   padding: 0.8em;
+  margin-left: 1em;
   border-radius: 1em;
   background: #51ffc2;
   -webkit-box-shadow: 0px 0px 14px 3px rgba(81,255,194,0.35);
@@ -240,6 +239,13 @@ input[type='range'] {
    background: #434343;
    box-shadow: -80px 0 0 80px #51ffc2;
  }
+
+/* login_page */
+
+.login_page{
+   justify-content: space-evenly;
+   width: 100%;
+}
 
 /** FF*/
 input[type="range"]::-moz-range-progress {

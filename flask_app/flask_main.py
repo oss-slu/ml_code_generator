@@ -2,7 +2,7 @@ import os
 from flask import Flask
 
 from flask_app.api import views
-from flask_app.api import authentication
+from flask_app.api import google_auth
 
 from flask_app.api.config import UPLOAD_FOLDER
 from flask_app.api.config import GOOGLE_CLIENT_ID
@@ -30,9 +30,8 @@ def create_app():
    app.add_url_rule('/select_y', view_func=views.select_y, methods=['GET', 'POST'])
    app.add_url_rule('/data', view_func=views.upload_file, methods=['GET', 'POST'])
    app.add_url_rule('/actions', view_func=views.next_actions, methods=['GET'])
-   app.add_url_rule('/login', view_func=authentication.login, methods=['GET'])
-   app.add_url_rule('/login/callback', view_func=authentication.login_callback, methods=['GET'])
-
+   app.add_url_rule('/login', view_func=google_auth.login, methods=['GET'])
+   app.add_url_rule('/login/callback', view_func=google_auth.login_callback, methods=['GET'])
    return app
 
 # main driver function
