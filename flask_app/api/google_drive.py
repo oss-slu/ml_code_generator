@@ -2,7 +2,7 @@ import tempfile
 
 import flask
 import googleapiclient.discovery
-from apiclient.http import MediaIoBaseUpload
+from googleapiclient.http import MediaIoBaseUpload
 from werkzeug.utils import secure_filename
 
 from flask_app.api.google_auth import build_credentials
