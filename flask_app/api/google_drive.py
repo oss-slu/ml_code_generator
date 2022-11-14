@@ -2,7 +2,7 @@ import tempfile
 
 import flask
 import googleapiclient.discovery
-from apiclient.http import MediaIoBaseDownload, MediaIoBaseUpload
+from apiclient.http import MediaIoBaseUpload
 from werkzeug.utils import secure_filename
 
 from flask_app.api.google_auth import build_credentials
@@ -46,10 +46,10 @@ def upload():
 
       filename = secure_filename(file.filename)
 
-      fp = tempfile.TemporaryFile()
-      ch = file.read()
-      fp.write(ch)
-      fp.seek(0)
+      file_data = tempfile.TemporaryFile()
+      contents = file.read()
+      file_data.write(contents)
+      file_data.seek(0)
 
       mime_type = flask.request.headers['Content-Type']
       save_image(filename, mime_type, fp)
