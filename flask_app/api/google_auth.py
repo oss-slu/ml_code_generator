@@ -2,6 +2,7 @@ from flask import current_app
 from flask import url_for
 from flask import session
 from flask import redirect
+import googleapiclient.discovery
 import google.oauth2.credentials
 
 import flask

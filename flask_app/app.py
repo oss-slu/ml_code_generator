@@ -1,6 +1,5 @@
-from flask import Flask, render_template, url_for, redirect
-from authlib.integrations.flask_client import OAuth
 import os
+from flask import Flask
 from flask_app.api import views
 from flask_app.api import google_auth
 from flask_app.api import google_drive
@@ -26,5 +25,5 @@ def create_app():
    return app
 
 if __name__ == "__main__":
-    main_app = create_app()
-    main_app.run(debug = True)
+   main_app = create_app()
+   main_app.run(debug = True)

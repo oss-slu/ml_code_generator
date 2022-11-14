@@ -38,12 +38,12 @@ def save_image(file_name, mime_type, file_data):
 def upload():
    if flask.request.method == 'POST':
       if 'file' not in flask.request.files:
-            return flask.redirect(flask.request.url)
+         return flask.redirect(flask.request.url)
 
       file = flask.request.files['file']
-      if (not file):
-            return flask.redirect(flask.request.url)
-            
+      if not file:
+         return flask.redirect(flask.request.url)
+
       filename = secure_filename(file.filename)
 
       fp = tempfile.TemporaryFile()
