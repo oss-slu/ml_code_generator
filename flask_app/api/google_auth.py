@@ -4,10 +4,9 @@ from flask import session
 from flask import redirect
 import google.oauth2.credentials
 
-from flask_app.api import config
 import flask
-
 from authlib.integrations.flask_client import OAuth
+from flask_app.api import config
 
 oauth = OAuth(current_app)
 
@@ -19,21 +18,21 @@ app = flask.Blueprint('google_auth', __name__)
 def build_credentials():
 #    oauth2_tokens = flask.session[AUTH_TOKEN_KEY]
 #    oauth2_tokens =  session['access_token']
-    return google.oauth2.credentials.Credentials(
-                session['access_token'],
-#                refresh_token=oauth2_tokens['refresh_token'],
-                client_id=config.GOOGLE_CLIENT_ID,
-                client_secret=config.GOOGLE_CLIENT_SECRET,
-                token_uri=config.ACCESS_TOKEN_URI)
+   return google.oauth2.credentials.Credentials(
+               session['access_token'],
+#              refresh_token=oauth2_tokens['refresh_token'],
+               client_id=config.GOOGLE_CLIENT_ID,
+               client_secret=config.GOOGLE_CLIENT_SECRET,
+               token_uri=config.ACCESS_TOKEN_URI)
 
 def get_user_info():
-    credentials = build_credentials()
-    oauth2_client = googleapiclient.discovery.build(
+   credentials = build_credentials()
+   oauth2_client = googleapiclient.discovery.build(
                         'oauth2', 'v2',
                         credentials=credentials)
 
-    return oauth2_client.userinfo().get().execute()
- 
+   return oauth2_client.userinfo().get().execute()
+
 def login():
    oauth.register(
       name='google',
@@ -41,7 +40,7 @@ def login():
       client_secret=current_app.config['GOOGLE_CLIENT_SECRET'],
       server_metadata_url=current_app.config['GOOGLE_DISCOVERY_URL'],
       client_kwargs={
-         'scope': 'openid email profile'
+         'scope': 'https://www.googleapis.com/auth/drive.file'
       }
    )
    redirect_uri = url_for('login_callback', _external=True)
@@ -54,4 +53,4 @@ def login_callback():
    return redirect('/')
 
 def is_logged_in():
-   return True if session['access_token'] in flask.session else False
+   return bool(session['access_token'] in flask.session)
