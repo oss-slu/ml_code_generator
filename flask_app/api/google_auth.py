@@ -43,7 +43,7 @@ def login():
       client_secret=current_app.config['GOOGLE_CLIENT_SECRET'],
       server_metadata_url=current_app.config['GOOGLE_DISCOVERY_URL'],
       client_kwargs={
-         'scope': 'https://www.googleapis.com/auth/drive.file'
+         'scope': 'openid email profile https://www.googleapis.com/auth/drive.file'
       }
    )
    redirect_uri = url_for('login_callback', _external=True)
