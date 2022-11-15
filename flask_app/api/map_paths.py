@@ -4,7 +4,7 @@ def correct_action(current_state):
    actions = []
    if current_state == 'start':
       return render_template('actions/upload_data.html')
-   elif current_state == 'upload':
+   if current_state == 'upload':
       actions = ['actions/describe_data.html']
    elif current_state == 'describe':
       actions = ['actions/prepare_model.html']
