@@ -57,7 +57,7 @@ def select_y():
    if request.method == 'POST':
       request_dict = request.form.to_dict()
       generator.select_y(request_dict['label'])
-      return correct_action(session['current_state'])
+      return redirect('/split?')
 
    keys = generator.get_labels()
    return render_template('actions/select_output_value.html', labels=keys)
@@ -87,7 +87,7 @@ def upload_file():
          with current_app.app_context():
             generator.load_data(current_app.config['UPLOAD_FOLDER']+'/' + filename)
 
-         return correct_action(session['current_state'])
+         return redirect('/describe')
 
    return render_template('actions/upload_data.html')
 
