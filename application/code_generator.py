@@ -53,6 +53,9 @@ class CodeGenerator:
       return model
 
    def lin_reg_predict(self):
+      (test_preds, train_preds) = self._parse_and_execute('lin_reg_predict', ['model', 'x_train', 'x_test'])
+      self._save('test_preds', test_preds)
+      self._save('train_preds', train_preds)
       return # temp
 
    def eval_lin_reg(self):

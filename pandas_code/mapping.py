@@ -18,6 +18,6 @@ template_mapping = {
    'select_y': select_y.get_code,
    'drop_x': drop_x.get_code,
    'train_lin_reg': train_lin_reg.get_code,
-   'lin_reg_predict': lin_reg_predict,
-   'eval_lin_reg': eval_lin_reg
+   'lin_reg_predict': lin_reg_predict.get_code,
+   'eval_lin_reg': eval_lin_reg.get_code
 }

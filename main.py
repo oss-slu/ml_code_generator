@@ -17,6 +17,7 @@ def run_generator(args):
    generator.select_y("eye")
    print(generator.split_data())
    print(generator.train_lin_reg())
+   print(generator.lin_reg_predict())
    code = generator.download_code()
    print(code)
 #process the arguments
