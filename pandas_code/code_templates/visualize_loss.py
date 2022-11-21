@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 def get_code(args):
    acc = args[0].history['loss']
    val_acc = args[0].history['val_loss']
-   
+
    plt.figure(figsize=(8, 8))
    plt.subplot(1, 2, 1)
    plt.plot(acc, label='Training Accuracy')
@@ -11,7 +11,7 @@ def get_code(args):
    plt.legend(loc='lower right')
    plt.title('Training and Validation Accuracy')
    plt.show()
-   
+
    # def visualize(self):
    #    acc = history.history['accuracy']
    #    val_acc = history.history['val_accuracy']
@@ -34,4 +34,3 @@ def get_code(args):
    #    plt.legend(loc='upper right')
    #    plt.title('Training and Validation Loss')
    #    plt.show()
-   
