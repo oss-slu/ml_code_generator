@@ -55,12 +55,14 @@ class CodeGenerator:
    def lin_reg_predict(self):
       (train_preds, test_preds) = self._parse_and_execute(
          'lin_reg_predict', ['model', 'x_train', 'x_test']
-         )
+      )
       self._save('train_preds', train_preds)
       self._save('test_preds', test_preds)
 
    def eval_lin_reg(self):
-      error_change = self._parse_and_execute('eval_lin_reg', ['y_train', 'y_test', 'train_preds', 'test_preds'])
+      error_change = self._parse_and_execute(
+         'eval_lin_reg', ['y_train', 'y_test', 'train_preds', 'test_preds']
+      )
 
    def download_code(self):
       return self.blocks.to_text()
