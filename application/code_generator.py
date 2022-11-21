@@ -63,6 +63,7 @@ class CodeGenerator:
       error_change = self._parse_and_execute(
          'eval_lin_reg', ['y_train', 'y_test', 'train_preds', 'test_preds']
       )
+      self._save('error_change', error_change)
 
    def download_code(self):
       return self.blocks.to_text()
