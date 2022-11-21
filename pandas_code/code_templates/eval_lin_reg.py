@@ -1,6 +1,6 @@
 # evaluate the effectiveness of the model
-from sklearn import metrics
+from sklearn.metrics import mean_squared_error
 def get_code(args):
-   return # temp
-   # need to take in y_train y_test train_preds test_preds
-   # return not needed
+   train_error = mean_squared_error(args[0], args[2])
+   test_error = mean_squared_error(args[1], args[3])
+   error_change = abs(test_error - train_error)
