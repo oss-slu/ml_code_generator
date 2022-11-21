@@ -22,11 +22,6 @@ class CodeGenerator:
       keys = self._parse_and_execute('get_keys', ['dataframe'])
       return keys.values.tolist()
 
-   def select_y(self, output_label):
-      x_values, y_values = self._parse_and_execute('select_y', ['dataframe', output_label])
-      self._save('x_values', x_values)
-      self._save('y_values', y_values)
-
    def drop_x(self, input_labels):
       dataframe = self._parse_and_execute('drop_x', ['dataframe', input_labels])
       self._save('dataframe', dataframe)
@@ -35,6 +30,15 @@ class CodeGenerator:
       dataframe = self._parse_and_execute('clean_data', ['dataframe'])
       self._save('dataframe', dataframe)
       return self.data['dataframe'].shape
+
+   def select_y(self, output_label):
+      x_values, y_values = self._parse_and_execute('select_y', ['dataframe', output_label])
+      self._save('x_values', x_values)
+      self._save('y_values', y_values)
+
+   def one_hot_encode_x_data(self):
+      x_values = self._parse_and_execute('one_hot_encode_x_data', ['x_values'])
+      self._save('x_values', x_values)
 
    def split_data(self, train_ratio = 0.8, seed = 200):
       # the ordering of x/y train/test is different here but I don't know why

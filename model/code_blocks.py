@@ -6,6 +6,7 @@ class CodeBlock:
       self.statements = statements
 
    def to_text(self):
+      # check if comment is none
       text_value = "#"+self.comment+"\n"
       for statement in self.statements:
          text_value += statement+"\n"
