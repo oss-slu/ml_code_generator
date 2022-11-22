@@ -74,9 +74,8 @@ class CodeGenerator:
 
       (comments, code) = self.parse_template(template, string_args)
       self._create_new_block(comments[0], code)
-      output = self.function_mapping[template](replaced_args)  # where the code is executed
+      output = self.function_mapping[template](replaced_args)
       return output
 
    def _save(self, key, value):
       self.data[key] = value
-      

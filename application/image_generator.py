@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from application import code_generator
 from model import code_blocks
-class ImageGenerator(code_generator):
+class ImageGenerator:
    def __init__(self, template_mapping, parse_template):
       self.blocks = code_blocks.AllBlocks()
       self.code_generator = code_generator.CodeGenerator(template_mapping, parse_template)
@@ -11,7 +11,6 @@ class ImageGenerator(code_generator):
       self.train = {}
       self.val = {}
       self.test = {}
-
 
    def load_images(self, images_directory):
       #Dividing the data in different batches and showing labels
@@ -24,13 +23,14 @@ class ImageGenerator(code_generator):
    def validate_images(self, images_directory):
       self.code_generator.\
          _parse_and_execute('validate_images', [images_directory])
+      return self.code_generator.download_code()
 
    def preprocess_images(self, images_directory): #directory after validating the images
       (train_data, val_data) = self.code_generator.\
          _parse_and_execute('preprocess_images', [images_directory])
       # (train_data, val_data) = self._parse_and_execute('preprocess_images', [images_directory])
       # # data_iterator = data.as_numpy_iterator() # Iterating thru each batch of images
-      # batch = data_iterator.next() # Getting images of ea
+      # batch = data_iterator.next() # Getting images of each batch
       print("Train classes:: ", train_data.class_names)
       print("Validation classes:: ", val_data.class_names)
       print("Number of training files:", len(train_data.file_paths))

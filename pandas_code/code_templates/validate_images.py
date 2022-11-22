@@ -18,7 +18,6 @@ def get_code(args):
                   os.remove(image_path)
             except Exception as exception:
                f"Issue with Image {image_path} and error occured {exception}"
-
 # def validate_images(self, data_dir):
    #    image_ext = ['jpeg', 'jpg', 'bmp', 'png']
    #    # validate images and remove inconsistent or bad images
