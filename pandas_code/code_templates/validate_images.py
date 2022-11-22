@@ -14,10 +14,10 @@ def get_code(args):
                cv2.imread(image_path)
                tip = imghdr.what(image_path)
                if tip not in image_ext:
-                  print("Image not in the ext listb{}".format(image_path))
+                  f"Image not in the ext listb{image_path}"
                   os.remove(image_path)
             except Exception as exception:
-               print("Issue with Image {} and error occured {}".format(image_path, exception))
+               f"Issue with Image {image_path} and error occured {exception}"
 
 # def validate_images(self, data_dir):
    #    image_ext = ['jpeg', 'jpg', 'bmp', 'png']
@@ -32,7 +32,7 @@ def get_code(args):
    #                img = cv2.imread(image_path)
    #                tip = imghdr.what(image_path)
    #                if tip not in image_ext:
-   #                   print("Image not in the ext listb{}".format(image_path))
+   #                   f"Image not in the ext listb{}".format(image_path))
    #                   os.remove(image_path)
    #             except Exception as e:
-   #                print("Issue with Image {}".format(image_path))
+   #                f"Issue with Image {}".format(image_path))

@@ -1,6 +1,7 @@
 import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
+from tensorflow import keras
+from keras.models import Sequential
+from keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
 #Deep learning images model
 def get_code(args):
    img_height = 256
@@ -19,7 +20,8 @@ def get_code(args):
    Dense(128, activation='relu'),
    Dense(len(classes))
    ])
-   model.compile('adam', loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
+   model.compile('adam',
+    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),metrics=['accuracy'])
    model.summary()
    history = model.fit(
       args[1], #train batch
