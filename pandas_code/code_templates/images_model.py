@@ -1,7 +1,6 @@
 import tensorflow as tf
-from tensorflow import keras
-from keras.models import Sequential
-from keras.layers import Conv2D, MaxPooling2D, Dense, Flatten
+from tensorflow.python.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
+from tensorflow.python.keras import Sequential
 #Deep learning images model
 def get_code(args):
    img_height = 256
@@ -9,7 +8,7 @@ def get_code(args):
    classes = args[0].class_names #data
 
    model = Sequential([
-   tf.keras.layers.Rescaling(1./255, input_shape=(img_height, img_width, 3)),
+   # Rescaling(1./255, input_shape=(img_height, img_width, 3)),
    Conv2D(16, 3, padding='same', activation='relu'),
    MaxPooling2D(),
    Conv2D(32, 3, padding='same', activation='relu'),

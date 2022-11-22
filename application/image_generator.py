@@ -30,7 +30,7 @@ class ImageGenerator:
          _parse_and_execute('preprocess_images', [images_directory])
       # (train_data, val_data) = self._parse_and_execute('preprocess_images', [images_directory])
       # # data_iterator = data.as_numpy_iterator() # Iterating thru each batch of images
-      # batch = data_iterator.next() # Getting images of each batch
+      # batch = data_iterator.next() # Getting images of ea
       print("Train classes:: ", train_data.class_names)
       print("Validation classes:: ", val_data.class_names)
       print("Number of training files:", len(train_data.file_paths))
