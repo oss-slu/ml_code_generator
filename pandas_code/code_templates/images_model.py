@@ -1,10 +1,10 @@
 import tensorflow as tf
-from tensorflow.python.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
-from tensorflow.python.keras import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
+from tensorflow.keras import Sequential
 #Deep learning images model
 def get_code(args):
-   img_height = 256
-   img_width = 256
+   # img_height = 256
+   # img_width = 256
    classes = args[0].class_names #data
 
    model = Sequential([
