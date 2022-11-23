@@ -16,8 +16,8 @@ def get_code(args):
                if tip not in image_ext:
                   f"Image not in the ext listb{image_path}"
                   os.remove(image_path)
-            except Exception as FileNotFoundError:
-               f"Issue with Image {image_path} because {FileNotFoundError}"
+            except FileNotFoundError as file_not_found:
+               f"Issue with Image {image_path} because {file_not_found}"
 
 # def validate_images(self, data_dir):
    #    image_ext = ['jpeg', 'jpg', 'bmp', 'png']
