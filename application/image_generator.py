@@ -1,8 +1,6 @@
 import matplotlib.pyplot as plt
 from application.code_generator import CodeGenerator
 from model import code_blocks
-from pandas_code.mapping import template_mapping
-from pandas_code.parse_template import parse_template
 class ImageGenerator:
    def __init__(self, template_mapping, parse_template):
       self.blocks = code_blocks.AllBlocks()

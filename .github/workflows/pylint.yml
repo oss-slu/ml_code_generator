@@ -24,6 +24,5 @@ jobs:
         echo "PYTHONPATH=./" >> $GITHUB_ENV
     - name: Analysing the code with pylint
       run: |
-        pylint --disable=missing-docstring --disable=no-member --disable=too-many-instance-attributes
-        --disable=pointless-statement --disable=protected-access --disable=broad-except --indent-string='   '
+        pylint --disable=missing-docstring no-member too-many-instance-attributes pointless-statement protected-access broad-except --indent-string='   '
         $(git ls-files "*.py")
