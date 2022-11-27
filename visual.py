@@ -7,7 +7,6 @@ def run_generator(args):
    print(args)
    input_file = args[1]
    image_gen = image_generator.ImageGenerator(template_mapping, parse_template)
-   cd_generator = code_generator.CodeGenerator(template_mapping, parse_template)
    image_classes = image_gen.load_images(input_file)
    number_of_classes=  [classes for classes in image_classes.class_names]
    print(f"There are {len(number_of_classes)} number of classes")
