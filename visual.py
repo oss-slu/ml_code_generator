@@ -1,5 +1,5 @@
 import sys
-from application import image_generator, code_generator
+from application import image_generator
 from pandas_code.mapping import template_mapping
 from pandas_code.parse_template import parse_template
 
@@ -8,7 +8,7 @@ def run_generator(args):
    input_file = args[1]
    image_gen = image_generator.ImageGenerator(template_mapping, parse_template)
    image_classes = image_gen.load_images(input_file)
-   number_of_classes=  [classes for classes in image_classes.class_names]
+   number_of_classes=  list(image_classes.class_names)
    print(f"There are {len(number_of_classes)} number of classes")
    image_gen.validate_images(input_file)
    data_generator = image_gen.preprocess_images(input_file)

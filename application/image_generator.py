@@ -21,7 +21,6 @@ class ImageGenerator:
    def validate_images(self, images_directory):
       self.code_generator.\
          _parse_and_execute('validate_images', [images_directory])
-      return None
 
    def preprocess_images(self, images_directory): #directory after validating the images
       data = self.code_generator.\
@@ -67,7 +66,6 @@ class ImageGenerator:
    def visualize(self, history):
       self.code_generator.\
          _parse_and_execute('visualize', [history])
-      return None
 
    def download(self):
       text = self.code_generator.download_code()
