@@ -18,7 +18,7 @@ def welcome():
    session['current_state'] = 'start'
    return render_template('home.html')
 
-def makeIpynb(code):
+def make_ipynb(code):
    template = {"cells":[{"cell_type":"code","metadata":{},"outputs":[],"source":[code]}],"metadata":{"language_info":{"name":"python"},"orig_nbformat":4},"nbformat":4,"nbformat_minor":2}
    with open ("data/sample.ipynb", "w") as outfile:
       json.dump(template,outfile)
@@ -26,7 +26,7 @@ def makeIpynb(code):
 def download_code():
    session['current_state'] = 'download'
    code = generator.download_code()
-   makeIpynb(code)
+   make_ipynb(code)
    return render_template('info/code.html', text=code)
 
 def describe_data():
