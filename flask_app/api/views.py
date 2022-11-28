@@ -1,10 +1,12 @@
 import os
+import json
 
 from flask import g
 from flask import current_app
 from flask import render_template
 from flask import request, redirect, flash
 from flask import session
+from flask import jsonify
 
 from werkzeug.utils import secure_filename
 
@@ -16,9 +18,15 @@ def welcome():
    session['current_state'] = 'start'
    return render_template('home.html')
 
+def makeIpynb(code):
+   template = {"cells":[{"cell_type":"code","metadata":{},"outputs":[],"source":[code]}],"metadata":{"language_info":{"name":"python"},"orig_nbformat":4},"nbformat":4,"nbformat_minor":2}
+   with open ("data/sample.ipynb", "w") as outfile:
+      json.dump(template,outfile)
+ 
 def download_code():
    session['current_state'] = 'download'
    code = generator.download_code()
+   makeIpynb(code)
    return render_template('info/code.html', text=code)
 
 def describe_data():
@@ -57,7 +65,7 @@ def select_y():
    if request.method == 'POST':
       request_dict = request.form.to_dict()
       generator.select_y(request_dict['label'])
-      return correct_action(session['current_state'])
+      return redirect('/split?')
 
    keys = generator.get_labels()
    return render_template('actions/select_output_value.html', labels=keys)
@@ -87,7 +95,7 @@ def upload_file():
          with current_app.app_context():
             generator.load_data(current_app.config['UPLOAD_FOLDER']+'/' + filename)
 
-         return correct_action(session['current_state'])
+         return redirect('/describe')
 
    return render_template('actions/upload_data.html')
 

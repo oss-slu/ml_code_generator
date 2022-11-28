@@ -3,7 +3,7 @@ from flask import Flask
 
 from flask_app.api import views
 from flask_app.api import google_auth
-
+from flask_app.api import google_drive
 from flask_app.api.config import UPLOAD_FOLDER
 from flask_app.api.config import GOOGLE_CLIENT_ID
 from flask_app.api.config import GOOGLE_CLIENT_SECRET
@@ -32,6 +32,7 @@ def create_app():
    app.add_url_rule('/actions', view_func=views.next_actions, methods=['GET'])
    app.add_url_rule('/login', view_func=google_auth.login, methods=['GET'])
    app.add_url_rule('/login/callback', view_func=google_auth.login_callback, methods=['GET'])
+   app.add_url_rule('/upload', view_func=google_drive.upload, methods=['GET','POST'])
    return app
 
 # main driver function
