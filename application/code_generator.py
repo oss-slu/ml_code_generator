@@ -1,9 +1,6 @@
 from application.code_parser import CodeParser
 from model import code_blocks
 class CodeGenerator(CodeParser):
-   def __init__(self, template_mapping, parse_template):
-      super(). __init__(emplate_mapping=template_mapping, parse_template=parse_template)
-
    def get_data(self):
       return self.data['dataframe']
 
