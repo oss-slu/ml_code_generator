@@ -1,10 +1,9 @@
 import random
 import matplotlib.pyplot as plt
 from application.code_parser import CodeParser
-from model import code_blocks
 class ImageGenerator(CodeParser):
    def __init__(self, template_mapping, parse_template):
-      super(). __init__(template_mapping, parse_template)
+      super(). __init__(template_mapping=template_mapping, parse_template=parse_template)
 
    def load_images(self, images_directory):
       #Dividing the data in different batches and showing labels
