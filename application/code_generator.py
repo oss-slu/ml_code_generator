@@ -1,10 +1,8 @@
+from application.code_parser import CodeParser
 from model import code_blocks
-class CodeGenerator:
+class CodeGenerator(CodeParser):
    def __init__(self, template_mapping, parse_template):
-      self.blocks = code_blocks.AllBlocks()
-      self.function_mapping = template_mapping
-      self.parse_template = parse_template
-      self.data = {}
+      super(). __init__(template_mapping, parse_template)
 
    def get_data(self):
       return self.data['dataframe']
@@ -59,6 +57,7 @@ class CodeGenerator:
       self.blocks.add_next_block(block)
 
    def _parse_and_execute(self, template, args):
+      print("Args is ", args)
       replaced_args = []
       string_args = []
       for arg in args:
