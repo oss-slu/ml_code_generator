@@ -1,4 +1,3 @@
-import os
 import tensorflow as tf
 # Identifying number of classes and labels
 def get_code(args):

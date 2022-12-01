@@ -9,11 +9,11 @@ class CodeParser:
    def download_code(self):
       return self.blocks.to_text()
 
-   def _create_new_block(self, comment, statements):
+   def create_new_block(self, comment, statements):
       block = code_blocks.CodeBlock(comment, statements)
       self.blocks.add_next_block(block)
 
-   def _parse_and_execute(self, template, args):
+   def parse_and_execute(self, template, args):
       print("Args is ", args)
       replaced_args = []
       string_args = []
@@ -32,9 +32,9 @@ class CodeParser:
          print("string arg", string_args)
 
       (comments, code) = self.parse_template(template, string_args)
-      self._create_new_block(comments[0], code)
+      self.create_new_block(comments[0], code)
       output = self.function_mapping[template](replaced_args)
       return output
 
-   def _save(self, key, value):
+   def save(self, key, value):
       self.data[key] = value
