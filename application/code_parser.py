@@ -28,8 +28,6 @@ class CodeParser:
                string_args.append('\"'+arg+'\"')
             else:
                string_args.append(str(arg))
-         print("replaced arg", replaced_args)
-         print("string arg", string_args)
 
       (comments, code) = self.parse_template(template, string_args)
       self.create_new_block(comments[0], code)
