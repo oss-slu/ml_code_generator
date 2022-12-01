@@ -1,6 +1,6 @@
 import os
 import imghdr
-from cv2 import cv2
+import cv2
 #Validating Images in the specified directory
 def get_code(args):
    image_ext = ['jpeg', 'jpg', 'bmp', 'png']
@@ -17,4 +17,5 @@ def get_code(args):
                   print(f"Image {image_path} not in the extension list".format(image_path))
                   os.remove(image_path)
             except FileNotFoundError as file_not_found:
-                  print(f"Issue with Image {image_path} because {file_not_found}".format(image_path, file_not_found))
+               print(f"Issue with Image {image_path} because {file_not_found}".\
+                     format(image_path, file_not_found))
