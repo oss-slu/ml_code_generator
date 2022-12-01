@@ -24,4 +24,4 @@ jobs:
         echo "PYTHONPATH=./" >> $GITHUB_ENV
     - name: Analysing the code with pylint
       run: |
-        pylint --disable=missing-docstring generate-members --indent-string='   '$(git ls-files "*.py")
+        pylint --disable=missing-docstring --indent-string='   ' $(git ls-files "*.py")
