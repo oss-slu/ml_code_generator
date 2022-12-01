@@ -18,11 +18,8 @@ def run_generator(args):
    clean_data = generator.clean_data()
    print(clean_data)
    generator.select_y("eye")
-
    generator.one_hot_encode_x_data()
-
    print(generator.split_data())
-   print(generator.train_model())
    code = generator.download_code()
    print(code)
 #process the arguments
