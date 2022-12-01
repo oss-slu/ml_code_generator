@@ -5,7 +5,7 @@ import googleapiclient.discovery
 from googleapiclient.http import MediaIoBaseUpload
 from werkzeug.utils import secure_filename
 
-from flask_app.api.google_auth import build_credentials
+from flask_app.api.google_colab.google_auth import build_credentials
 
 app = flask.Blueprint('google_drive', __name__)
 
