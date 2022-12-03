@@ -20,6 +20,9 @@ def run_generator(args):
    generator.select_y("eye")
    generator.one_hot_encode_x_data()
    print(generator.split_data())
+   generator.train_model()
+
+
    code = generator.download_code()
    print(code)
 #process the arguments

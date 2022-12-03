@@ -13,7 +13,7 @@ def parse_template(template_name, args):
          trimmed_line = line.rstrip()
          if trimmed_line.startswith("def get_code"):
             continue
-         if trimmed_line.startswith("return"):
+         if trimmed_line.strip().startswith("return"):
             continue
             # this is no longer being skipped
          if trimmed_line.startswith("#"):
