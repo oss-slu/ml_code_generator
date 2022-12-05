@@ -52,9 +52,7 @@ def upload():
       contents = file.read()
       file_data.write(contents)
       file_data.seek(0)
-      
       mime_type = flask.request.headers['Content-Type']
       docs_id = save_image(filename, mime_type, file_data)
-      
       return flask.redirect("https://colab.research.google.com/drive/" + docs_id)
    return flask.render_template("upload.html")
