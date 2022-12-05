@@ -12,6 +12,8 @@ from pandas_code.code_templates import preprocess_images
 from pandas_code.code_templates import split_images
 from pandas_code.code_templates import images_model
 from pandas_code.code_templates import visualize
+from pandas_code.code_templates import metrics
+from pandas_code.code_templates import test_image
 template_mapping = {
    'read_csv':read_csv.get_code,
    'describe_data':describe_data.get_code,
@@ -26,5 +28,7 @@ template_mapping = {
    'preprocess_images':preprocess_images.get_code,
    'split_images':split_images.get_code,
    'images_model':images_model.get_code,
-   'visualize':visualize.get_code
+   'visualize':visualize.get_code,
+   'metrics':metrics.get_code,
+   'test_image':test_image.get_code
 }

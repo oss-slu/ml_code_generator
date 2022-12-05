@@ -14,11 +14,9 @@ class CodeParser:
       self.blocks.add_next_block(block)
 
    def parse_and_execute(self, template, args):
-      print("Args is ", args)
       replaced_args = []
       string_args = []
       for arg in args:
-         print("Each Argument::", arg)
          if isinstance(arg, str) and arg in self.data:
             replaced_args.append(self.data[arg])
             string_args.append(arg)
