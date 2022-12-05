@@ -91,9 +91,9 @@ def upload_file():
 
    return render_template('actions/upload_data.html')
 
-def train_model():
+def train_lin_reg():
    session['current_state'] = 'train'
-   generator.train_model()
+   generator.train_lin_reg()
    return download_code()
 
 def next_actions():

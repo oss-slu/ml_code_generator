@@ -25,7 +25,7 @@ def create_app():
    app.add_url_rule('/download', view_func=views.download_code, methods=['GET'])
    app.add_url_rule('/describe', view_func=views.describe_data, methods=['GET'])
    app.add_url_rule('/split', view_func=views.split_data, methods=['GET', 'POST'])
-   app.add_url_rule('/train', view_func=views.train_model, methods=['GET'])
+   app.add_url_rule('/train', view_func=views.train_lin_reg, methods=['GET'])
    app.add_url_rule('/select_features', view_func=views.select_features, methods=['GET', 'POST'])
    app.add_url_rule('/select_y', view_func=views.select_y, methods=['GET', 'POST'])
    app.add_url_rule('/data', view_func=views.upload_file, methods=['GET', 'POST'])
