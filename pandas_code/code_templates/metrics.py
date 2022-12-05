@@ -1,5 +1,6 @@
 import tensorflow as tf
 #Finding the accuracy of the model
+# pylint: disable=not-callable
 def get_code(args):
    precision = tf.keras.metrics.Precision()
    recall = tf.keras.metrics.Recall()
