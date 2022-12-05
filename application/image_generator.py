@@ -1,5 +1,4 @@
 import random
-import cv2
 import matplotlib.pyplot as plt
 from application.code_parser import CodeParser
 class ImageGenerator(CodeParser):
@@ -51,9 +50,8 @@ class ImageGenerator(CodeParser):
       return self.data['history']
 
    def model_metrics(self):
-      (pre, re, acc) = self.parse_and_execute('metrics', ['test', 'model'])
-      return pre, re, acc
-
+      (precision, recall, accuracy) = self.parse_and_execute('metrics', ['test', 'model'])
+      return precision, recall, accuracy
 
    def visualize(self):
       self.\

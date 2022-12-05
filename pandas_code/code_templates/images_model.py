@@ -1,5 +1,4 @@
 import tensorflow as tf
-from tensorflow.keras.callbacks import EarlyStopping
 #Deep learning images model
 def get_code(args):
 
@@ -14,7 +13,8 @@ def get_code(args):
    tf.keras.layers.Dense(256, activation='relu'),
    tf.keras.layers.Dense(1, activation='sigmoid')
    ])
-   early_stopping = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=5)
+   early_stopping = tf.keras.callbacks.EarlyStopping\
+      (monitor='val_loss', mode='min', verbose=1, patience=5)
    model.compile('adam',
                #   SparseCategoricalCrossentropy(from_logits=True)
     loss=tf.losses.BinaryCrossentropy(),metrics=['accuracy'])

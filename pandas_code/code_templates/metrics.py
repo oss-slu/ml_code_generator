@@ -1,16 +1,16 @@
-from tensorflow.keras.metrics import Precision, Recall, BinaryAccuracy
+import tensorflow as tf
 #Finding the accuracy of the model
 def get_code(args):
-   pre = Precision()
-   re = Recall()
-   acc = BinaryAccuracy()
+   precision = tf.keras.metrics.Precision()
+   recall = tf.keras.metrics.Recall()
+   accuracy = tf.keras.metrics.BinaryAccuracy()
    # test = args[0].map(lambda x, y: (x/255, y))
    for batch in args[0].as_numpy_iterator():
-      X, y = batch
-      yhat = args[1].predict(X)
-      pre.update_state(y, yhat)
-      re.update_state(y, yhat)
-      acc.update_state(y, yhat)
-   print(f'Precision: {pre.result().numpy()}, \
-   Recall: {re.result().numpy()}, Accuracy: {acc.result().numpy()}')
-   return pre, re, acc
+      images_batch, labels_batch = batch
+      yhat = args[1].predict(images_batch)
+      precision.update_state(labels_batch, yhat)
+      recall.update_state(labels_batch, yhat)
+      accuracy.update_state(labels_batch, yhat)
+   print(f'Precision: {precision.result().numpy()}, \
+   Recall: {recall.result().numpy()}, Accuracy: {accuracy.result().numpy()}')
+   return precision, recall, accuracy
