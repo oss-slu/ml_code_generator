@@ -58,7 +58,4 @@ def login_callback():
    return redirect('/upload')
 
 def is_logged_in():
-   if(session):
-      return False
-   else:
-      return bool(session['access_token'] in flask.session.values())
+   return bool(session['access_token'] in flask.session.values())

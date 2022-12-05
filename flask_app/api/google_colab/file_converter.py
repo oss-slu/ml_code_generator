@@ -14,5 +14,3 @@ def make_ipynb():
    else:
       with open (file_name, mode = "x",encoding="utf-8") as outfile:
          json.dump(template,outfile)
-   
-
