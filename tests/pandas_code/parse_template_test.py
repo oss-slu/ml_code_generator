@@ -54,6 +54,7 @@ def test_parse_train():
    template_name = 'train_model'
    args = ['x_values', 'y_values']
    parse_template(template_name, args)
+
 def test_parse_split():
    template_name = 'split'
    args = ['X', 'Y', '0.8', '200']

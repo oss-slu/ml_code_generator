@@ -14,21 +14,17 @@ def get_code(args):
    tf.keras.layers.Dense(1, activation='sigmoid')
    ])
    early_stopping = tf.keras.callbacks.EarlyStopping\
-      (monitor='val_loss', mode='min', verbose=1, patience=5)
+      (monitor='val_loss', mode='min', verbose=1, patience=10)
    model.compile('adam',
                #   SparseCategoricalCrossentropy(from_logits=True)
     loss=tf.losses.BinaryCrossentropy(),metrics=['accuracy'])
    model.summary()
-   toggle_switch = input("Do you want to compile the model? y/n ")
-   if toggle_switch.lower() == 'y':
-      history = model.fit(
-         args[1], #train batch
-         validation_data = args[2], #validation batch
-         epochs = args[3], #change number of epochs as per your requirement
-         callbacks=[early_stopping]
-      )
-      # model.save(os.path.join('models', 'simplemodel.h5'))
-      return history, model
-   history = '<keras.engine.sequential.Sequential object at 0x16d843be0>'
-   model = '<keras.callbacks.History object at 0x16d8b2200>'
+
+   history = model.fit(
+      args[1], #train batch
+      validation_data = args[2], #validation batch
+      epochs = args[3], #change number of epochs as per your requirement
+      callbacks=[early_stopping]
+   )
+   # model.save(os.path.join('models', 'simplemodel.h5'))
    return history, model

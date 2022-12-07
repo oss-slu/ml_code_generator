@@ -14,6 +14,6 @@ def get_code(args):
    # our model expects batch of images
    yhat = args[1].predict(np.expand_dims(resize/255, 0))
    if yhat > 0.5:
-      print(f"Predicted class is {args[2][1]}")
-   else:
       print(f"Predicted class is {args[2][0]}")
+   else:
+      print(f"Predicted class is {args[2][1]}")
