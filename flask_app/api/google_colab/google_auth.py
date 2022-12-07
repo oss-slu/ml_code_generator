@@ -7,6 +7,7 @@ import google.oauth2.credentials
 
 import flask
 from authlib.integrations.flask_client import OAuth
+from flask_app.api.google_colab.file_converter import make_ipynb
 from flask_app.api import config
 
 oauth = OAuth(current_app)
@@ -50,10 +51,11 @@ def login():
    return oauth.google.authorize_redirect(redirect_uri)
 
 def login_callback():
+   make_ipynb()
    token=oauth.google.authorize_access_token()
    session['userinfo']=token['userinfo']
    session['access_token']=token['access_token']
-   return redirect('/')
+   return redirect('/upload')
 
 def is_logged_in():
-   return bool(session['access_token'] in flask.session)
+   return bool(session['access_token'] in flask.session.values())

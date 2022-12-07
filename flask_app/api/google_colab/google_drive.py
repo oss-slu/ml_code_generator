@@ -1,11 +1,13 @@
 import tempfile
 
 import flask
+
 import googleapiclient.discovery
 from googleapiclient.http import MediaIoBaseUpload
 from werkzeug.utils import secure_filename
 
-from flask_app.api.google_auth import build_credentials
+
+from flask_app.api.google_colab.google_auth import build_credentials
 
 app = flask.Blueprint('google_drive', __name__)
 
@@ -46,13 +48,11 @@ def upload():
          return flask.redirect(flask.request.url)
 
       filename = secure_filename(file.filename)
-
       file_data = tempfile.TemporaryFile()
       contents = file.read()
       file_data.write(contents)
       file_data.seek(0)
-
       mime_type = flask.request.headers['Content-Type']
-      save_image(filename, mime_type, file_data)
-
-   return flask.render_template('upload.html')
+      docs_id = save_image(filename, mime_type, file_data)
+      return flask.redirect("https://colab.research.google.com/drive/" + docs_id)
+   return flask.render_template("upload.html")

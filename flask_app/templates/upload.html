@@ -3,7 +3,6 @@
 <div>
     {% if session['userinfo'] %}
        <h1>Welcome {{session['userinfo']['name']}}</h1>
-       <h1>Welcome {{session}}</h1>
     {% else %}
        <h1>Welcome to code generator</h1>
     {% endif %}
