@@ -4,10 +4,8 @@
 {% block content %}
 <p class="instructions"> Select your next step from the options below</p>
 <div class="next-actions">
-{% include 'actions/describe_data.html' %}
-{% include 'actions/clean_data.html' %}
-{% include 'actions/prepare_model.html' %}
-{% include 'actions/split_data.html' %}
-{% include 'actions/train_model.html' %}
+{% for action in next_actions %}
+   {% include action %}
+{% endfor %}
 </div>
 {% endblock %}

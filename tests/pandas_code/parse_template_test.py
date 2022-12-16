@@ -51,7 +51,7 @@ def test_three_args_per_line():
    assert line_replaced=='print(\'kate\',5,\'data\')'
 
 def test_parse_train():
-   template_name = 'train_model'
+   template_name = 'train_lin_reg'
    args = ['x_values', 'y_values']
    parse_template(template_name, args)
 

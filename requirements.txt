@@ -7,7 +7,7 @@ Authlib
 pylint
 scikit-learn
 numpy
-tensorflow 
-tensorflow-gpu 
-opencv-python 
-matplotlib
+tensorflow
+tensorflow-gpu
+opencv-python
+matplotlibgoogle-api-python-client

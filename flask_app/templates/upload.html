@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    {% if session['userinfo'] %}
+       <h1>Welcome {{session['userinfo']['name']}}</h1>
+    {% else %}
+       <h1>Welcome to code generator</h1>
+    {% endif %}
+</div>
+<div class="inputform">
+    <form method=post enctype=multipart/form-data>
+    <input required type="file" name="file">
+    <input class="action" type=submit value=Upload>
+    </form>
+ </div>
+ {% endblock %}

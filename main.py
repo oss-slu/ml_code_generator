@@ -10,14 +10,15 @@ def run_generator(args):
    generator.load_data(input_file)
    data_summary = generator.describe_data()
    print(data_summary.to_csv())
+   print(generator.get_labels())     # feature names
+   generator.drop_x(['Pop', 'sex'])
    clean_data = generator.clean_data()
    print(clean_data)
-   print(generator.get_labels())     # feature names
    generator.select_y("eye")
-   generator.drop_x('Pop')  # note: can only drop one thing at a time at the moment
-   generator.drop_x('sex')
    print(generator.split_data())
-   print(generator.train_model())
+   print(generator.train_lin_reg())
+   print(generator.lin_reg_predict())
+   print(generator.eval_lin_reg())
    code = generator.download_code()
    print(code)
 #process the arguments
