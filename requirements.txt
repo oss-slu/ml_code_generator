@@ -10,4 +10,5 @@ numpy
 tensorflow
 tensorflow-gpu
 opencv-python
-matplotlibgoogle-api-python-client
+matplotlib
+google-api-python-client
