@@ -11,7 +11,7 @@ def correct_action(current_state):
    elif current_state == 'prepare':
       actions = ['actions/split_data.html']
    elif current_state == 'split':
-      actions = ['actions/train_model.html']
+      actions = ['actions/train_lin_reg.html']
    elif current_state == 'train':
       actions = ['actions/download_code.html']
 
