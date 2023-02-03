@@ -21,7 +21,7 @@ The instructions below assume that python3 and pip3 refer to Python 3.x and Pip 
 export PYTHONPATH=$(pwd)
 
 ## Run the code at command line:
-1. python3 driver.py <INPUT_CSV_FILE>
+1. python3 main.py <INPUT_CSV_FILE>
 
 This code will process the input csv file, remove rows with missing values, and will output
 data summary. Generated python code will be printed to the terminal.
