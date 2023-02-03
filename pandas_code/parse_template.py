@@ -3,20 +3,31 @@ def parse_template(template_name, args):
    template = 'pandas_code/code_templates/'+template_name+".py"
    generated_comments = []
    generated_code = []
+   indent_size = 0
+   is_space = False
    with open(template, encoding='ascii') as source_code:
       lines = source_code.readlines()
+      if (not is_space) and re.match(r'\s', lines[0]):
+         is_space = True
       for line in lines:
-         trimmed_line = line.strip()
+         trimmed_line = line.rstrip()
          if trimmed_line.startswith("def get_code"):
             continue
-         if trimmed_line.startswith("return"):
+         if trimmed_line.strip().startswith("return"):
             continue
+            # this is no longer being skipped
          if trimmed_line.startswith("#"):
             generated_comments.append(trimmed_line)
          else:
             trimmed_line = replace_args_with_values(trimmed_line, args)
+            if not (trimmed_line.startswith("from") or trimmed_line.startswith("import")):
+               if indent_size == 0:
+                  indent_size = len(trimmed_line) - len(trimmed_line.lstrip())
+               if not is_space:
+                  trimmed_line = trimmed_line.expandtabs(3)
+                  indent_size = 3
+               trimmed_line = trimmed_line[indent_size:]
             generated_code.append(trimmed_line)
-
    return (generated_comments, generated_code)
 
 def replace_args_with_values(line, args):

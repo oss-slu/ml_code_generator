@@ -11,14 +11,17 @@ def run_generator(args):
    data_summary = generator.describe_data()
    print(data_summary.to_csv())
    print(generator.get_labels())     # feature names
-   generator.drop_x(['Pop', 'sex'])
+
+   #generator.drop_x(['Pop', 'sex'])
+   generator.drop_x(['sex'])
+
    clean_data = generator.clean_data()
    print(clean_data)
    generator.select_y("eye")
+   generator.one_hot_encode_x_data()
    print(generator.split_data())
-   print(generator.train_lin_reg())
-   print(generator.lin_reg_predict())
-   print(generator.eval_lin_reg())
+   generator.train_lin_reg()
+   generator.predict_lin_reg()
    code = generator.download_code()
    print(code)
 #process the arguments
