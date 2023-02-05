@@ -77,7 +77,6 @@ class CodeGenerator:
    def predict_decision_tree(self):
       test_preds = self._parse_and_execute('predict_decision_tree', ['model', 'x_test'])
       self._save('test_preds', test_preds)
-      return
 
    def download_code(self):
       return self.blocks.to_text()
