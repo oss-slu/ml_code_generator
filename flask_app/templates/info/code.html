@@ -11,9 +11,11 @@
 </div>
 <div>
     <ul>
-        <li><a href="/login">upload</a>
+        <li><a href="/download_code">Download Code</a></li>
+        <li><a href="/login">Upload Code</a></li>
     </ul>
 </div>
+
 <script>
     var copyBtn = document.querySelector('.action');  
     copyBtn.addEventListener('click', function(event) {  
@@ -31,7 +33,7 @@
             alert('Unable to copy');  
         }
         // Remove the selections
-        window.getSelection().removeAllRanges();  
+        window.getSelection().removeAllRanges(); 
     });
 </script>
 {% endblock %}

@@ -1,4 +1,5 @@
 import tempfile
+from datetime import date
 
 import flask
 
@@ -56,3 +57,6 @@ def upload():
       docs_id = save_image(filename, mime_type, file_data)
       return flask.redirect("https://colab.research.google.com/drive/" + docs_id)
    return flask.render_template("upload.html")
+
+def download():
+   return flask.send_file("../data/" + str(date.today()) + ".ipynb")
