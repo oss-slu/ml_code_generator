@@ -9,6 +9,7 @@ from werkzeug.utils import secure_filename
 
 
 from flask_app.api.google_colab.google_auth import build_credentials
+from flask_app.api.google_colab.file_converter import make_ipynb
 
 app = flask.Blueprint('google_drive', __name__)
 
@@ -59,4 +60,5 @@ def upload():
    return flask.render_template("upload.html")
 
 def download():
+   make_ipynb()
    return flask.send_file("../data/" + str(date.today()) + ".ipynb")

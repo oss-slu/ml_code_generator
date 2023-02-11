@@ -51,7 +51,6 @@ def login():
    return oauth.google.authorize_redirect(redirect_uri)
 
 def login_callback():
-   make_ipynb()
    token=oauth.google.authorize_access_token()
    session['userinfo']=token['userinfo']
    session['access_token']=token['access_token']
