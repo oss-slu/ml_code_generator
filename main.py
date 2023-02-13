@@ -19,7 +19,7 @@ def run_generator(args):
    print(generator.split_data())
    generator.train_decision_tree()
    generator.predict_decision_tree()
-
+   generator.eval_decision_tree()
    code = generator.download_code()
    print(code)
 #process the arguments
