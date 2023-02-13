@@ -69,6 +69,15 @@ class CodeGenerator:
       )
       self._save('error_change', error_change)
 
+   def train_decision_tree(self):
+      model = self._parse_and_execute('train_decision_tree', ['x_train', 'y_train'])
+      self._save('model', model)      # will need to be renamed if using multiple models
+      return model
+
+   def predict_decision_tree(self):
+      test_preds = self._parse_and_execute('predict_decision_tree', ['model', 'x_test'])
+      self._save('test_preds', test_preds)
+
    def download_code(self):
       return self.blocks.to_text()
 

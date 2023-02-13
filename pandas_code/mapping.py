@@ -5,10 +5,12 @@ from pandas_code.code_templates import eval_lin_reg
 from pandas_code.code_templates import get_keys
 from pandas_code.code_templates import one_hot_encode_x_data
 from pandas_code.code_templates import predict_lin_reg
+from pandas_code.code_templates import predict_decision_tree
 from pandas_code.code_templates import read_csv
 from pandas_code.code_templates import select_y
 from pandas_code.code_templates import split
 from pandas_code.code_templates import train_lin_reg
+from pandas_code.code_templates import train_decision_tree
 
 template_mapping = {
    'clean_data':clean_data.get_code,
@@ -18,7 +20,10 @@ template_mapping = {
    'get_keys':get_keys.get_code,
    'one_hot_encode_x_data':one_hot_encode_x_data.get_code,
    'predict_lin_reg':predict_lin_reg.get_code,
+   'predict_decision_tree':predict_decision_tree.get_code,
    'read_csv':read_csv.get_code,
    'select_y':select_y.get_code,
-   'split':split.get_code,'train_lin_reg':train_lin_reg.get_code
+   'split':split.get_code,
+   'train_lin_reg':train_lin_reg.get_code,
+   'train_decision_tree':train_decision_tree.get_code
 }
