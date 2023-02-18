@@ -80,6 +80,7 @@ class CodeGenerator:
 
    def eval_decision_tree(self):
       self._parse_and_execute('eval_decision_tree', ['y_test', 'test_preds'])
+      # ^ this is going to the predict function again
 
    def download_code(self):
       return self.blocks.to_text()

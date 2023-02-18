@@ -17,7 +17,7 @@ template_mapping = {
    'clean_data':clean_data.get_code,
    'describe_data':describe_data.get_code,
    'drop_x':drop_x.get_code,
-   'eval_decision_tree':predict_decision_tree.get_code,
+   'eval_decision_tree':eval_decision_tree.get_code,
    'eval_lin_reg': eval_lin_reg.get_code,
    'get_keys':get_keys.get_code,
    'one_hot_encode_x_data':one_hot_encode_x_data.get_code,
