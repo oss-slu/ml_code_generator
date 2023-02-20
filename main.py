@@ -17,9 +17,9 @@ def run_generator(args):
    generator.select_y("eye") # the y can't be continuous for decision trees
    generator.one_hot_encode_x_data()
    print(generator.split_data())
-   generator.train_lin_reg()
-   generator.predict_lin_reg()
-   generator.eval_lin_reg()
+   generator.train_decision_tree()
+   generator.predict_decision_tree()
+   generator.eval_decision_tree()
    code = generator.download_code()
    print(code)
 #process the arguments
