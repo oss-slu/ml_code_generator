@@ -1,4 +1,5 @@
 import tempfile
+from datetime import date
 
 import flask
 
@@ -8,6 +9,7 @@ from werkzeug.utils import secure_filename
 
 
 from flask_app.api.google_colab.google_auth import build_credentials
+from flask_app.api.google_colab.file_converter import make_ipynb
 
 app = flask.Blueprint('google_drive', __name__)
 
@@ -56,3 +58,7 @@ def upload():
       docs_id = save_image(filename, mime_type, file_data)
       return flask.redirect("https://colab.research.google.com/drive/" + docs_id)
    return flask.render_template("upload.html")
+
+def download():
+   make_ipynb()
+   return flask.send_file("../data/" + str(date.today()) + ".ipynb")

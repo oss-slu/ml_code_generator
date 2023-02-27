@@ -33,6 +33,7 @@ def create_app():
    app.add_url_rule('/login', view_func=google_auth.login, methods=['GET'])
    app.add_url_rule('/login/callback', view_func=google_auth.login_callback, methods=['GET'])
    app.add_url_rule('/upload', view_func=google_drive.upload, methods=['GET','POST'])
+   app.add_url_rule('/download_code', view_func=google_drive.download, methods=['GET'])
    return app
 
 # main driver function
