@@ -5,6 +5,7 @@ from flask_app.api.generator import generator
 
 def make_ipynb():
    code = generator.download_code()
+   code = code.replace("data//possum.csv", "/content/drive/My Drive/possum.csv")
    file_name = "data/"+ str(date.today()) + ".ipynb"
    template = {
    "cells": [
@@ -41,3 +42,4 @@ def make_ipynb():
    else:
       with open (file_name, mode = "x",encoding="utf-8") as outfile:
          json.dump(template,outfile)
+         
