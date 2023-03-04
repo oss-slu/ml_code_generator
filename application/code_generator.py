@@ -1,4 +1,5 @@
 from model import code_blocks
+from pandas_code.code_templates import is_categorical
 class CodeGenerator:
    def __init__(self, template_mapping, parse_template):
       self.blocks = code_blocks.AllBlocks()
@@ -37,7 +38,10 @@ class CodeGenerator:
       self._save('y_values', y_values)
 
    def one_hot_encode_x_data(self):
-      x_values = self._parse_and_execute('one_hot_encode_x_data', ['x_values'])
+      x_values = self.data["x_values"]
+      create_code = is_categorical.is_categorical(x_values)
+      if create_code:
+         x_values = self._parse_and_execute('one_hot_encode_x_data', ['x_values'])
       self._save('x_values', x_values)
 
    def split_data(self, train_ratio = 0.8, seed = 200):
