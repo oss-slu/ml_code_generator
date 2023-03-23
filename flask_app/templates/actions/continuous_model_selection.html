@@ -1,0 +1,20 @@
+<!doctype html>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+   <h2>Continuous Model Selection</h2>
+   <p>
+      "Create a page that will list all of the options for creating a model using discrete "y" data"
+   </p>
+   <form action="/select_y" method="post">
+
+      <div>
+         <input type="radio" name="continuous" value=true>Continuous</input>
+         <input type="radio" name="continuous" value=false>Discrete</input>
+      </div>
+
+      <input class="action" type="submit" value="Submit Selection" />
+</div>
+{% endblock %}
