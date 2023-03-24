@@ -1,5 +1,7 @@
 from model import code_blocks
 from pandas_code.code_templates import is_categorical
+import numpy as np
+import pandas as pd
 class CodeGenerator:
    def __init__(self, template_mapping, parse_template):
       self.blocks = code_blocks.AllBlocks()
@@ -39,10 +41,16 @@ class CodeGenerator:
 
    def one_hot_encode_x_data(self):
       x_values = self.data["x_values"]
-      create_code = is_categorical.is_categorical(x_values)
-      if create_code:
+      y_values = self.data["y_values"]
+      create_code = is_categorical.is_categorical(x_values, y_values)
+      if create_code[0]:
          x_values = self._parse_and_execute('one_hot_encode_x_data', ['x_values'])
+      if create_code[1]:
+         print("trying to encode y data")
+         y_values = self._parse_and_execute('one_hot_encode_y_data', ['y_values'])
+         print("encoded y values")
       self._save('x_values', x_values)
+      self._save('y_values', y_values)
 
    def split_data(self, train_ratio = 0.8, seed = 200):
       # the ordering of x/y train/test is different here but I don't know why
