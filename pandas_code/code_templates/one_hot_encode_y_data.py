@@ -1,5 +1,4 @@
 # apply one hot encoding to any categorical variables
-from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 def get_code(args):
    one_hot = pd.get_dummies(args[0])

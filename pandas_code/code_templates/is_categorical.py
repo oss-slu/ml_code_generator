@@ -1,5 +1,4 @@
 from pandas.api.types import is_numeric_dtype
-import pandas as pd
 
 def is_categorical(x_data, y_data):
    print("\n", "hit dtype")

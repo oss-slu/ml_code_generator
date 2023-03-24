@@ -1,7 +1,6 @@
 from model import code_blocks
 from pandas_code.code_templates import is_categorical
-import numpy as np
-import pandas as pd
+
 class CodeGenerator:
    def __init__(self, template_mapping, parse_template):
       self.blocks = code_blocks.AllBlocks()
