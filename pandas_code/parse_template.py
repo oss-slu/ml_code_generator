@@ -19,8 +19,6 @@ def parse_template(template_name, args):
             # needed?
          if trimmed_line.strip().find("is_categorical") != -1:
             continue
-         if trimmed_line.strip().find("type") != -1:
-            continue
          if trimmed_line.startswith("#"):
             generated_comments.append(trimmed_line)
          else:
