@@ -11,10 +11,10 @@ def run_generator(args):
    data_summary = generator.describe_data()
    print(data_summary.to_csv())
    print(generator.get_labels())     # feature names
-   generator.drop_x(['sex'])
+   generator.drop_x(['eye'])
    clean_data = generator.clean_data()
    print(clean_data)
-   generator.select_y("eye") # the y can't be continuous for decision trees
+   generator.select_y("sex") # the y can't be continuous for decision trees
    generator.one_hot_encode_x_data()
    print(generator.split_data())
    generator.train_decision_tree()

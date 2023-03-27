@@ -1,8 +1,4 @@
-# apply one hot encoding to any categorical variables
-
-# !!!!!!!!!!!!!!!!!!!!!!!
-# maybe change so that is before choosing y so it can all get one hot encoded if needed
-
+# apply one hot encoding to any categorical variables in x data
 from pandas.api.types import is_numeric_dtype
 import pandas as pd
 def get_code(args):
