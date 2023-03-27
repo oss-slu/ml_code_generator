@@ -45,9 +45,7 @@ class CodeGenerator:
       if create_code[0]:
          x_values = self._parse_and_execute('one_hot_encode_x_data', ['x_values'])
       if create_code[1]:
-         print("trying to encode y data")
          y_values = self._parse_and_execute('one_hot_encode_y_data', ['y_values'])
-         print("encoded y values")
       self._save('x_values', x_values)
       self._save('y_values', y_values)
 

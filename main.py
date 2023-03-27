@@ -16,7 +16,6 @@ def run_generator(args):
    print(clean_data)
    generator.select_y("eye") # the y can't be continuous for decision trees
    generator.one_hot_encode_x_data()
-   print("\n left one hot \n")
    print(generator.split_data())
    generator.train_lin_reg()
    generator.predict_lin_reg()
