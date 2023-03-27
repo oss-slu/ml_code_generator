@@ -9,4 +9,3 @@ def is_categorical(x_data, y_data):
    if not is_numeric_dtype(y_data):
       y_is_cat = True   
    return (x_is_cat, y_is_cat)
-   
