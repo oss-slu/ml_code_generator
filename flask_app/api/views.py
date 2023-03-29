@@ -57,11 +57,19 @@ def select_y():
    if request.method == 'POST':
       request_dict = request.form.to_dict()
       generator.select_y(request_dict['label'])
-      return redirect('/split?')
+      return redirect('/continuous?')
 
    keys = generator.get_labels()
    return render_template('actions/select_output_value.html', labels=keys)
    # return render_template('labels.html', labels=keys)
+
+def continuous():
+   session['current_state'] = 'prepare'
+   if request.method == 'POST':
+      return redirect('/split?')
+
+   keys = generator.get_labels()
+   return render_template('actions/continuous_model_selection.html', labels=keys)
 
 def upload_file():
    session['current_state'] = 'upload'

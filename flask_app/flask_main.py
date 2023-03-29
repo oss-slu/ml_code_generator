@@ -28,6 +28,7 @@ def create_app():
    app.add_url_rule('/train', view_func=views.train_lin_reg, methods=['GET'])
    app.add_url_rule('/select_features', view_func=views.select_features, methods=['GET', 'POST'])
    app.add_url_rule('/select_y', view_func=views.select_y, methods=['GET', 'POST'])
+   app.add_url_rule('/continuous', view_func=views.continuous, methods=['GET', 'POST'])
    app.add_url_rule('/data', view_func=views.upload_file, methods=['GET', 'POST'])
    app.add_url_rule('/actions', view_func=views.next_actions, methods=['GET'])
    app.add_url_rule('/login', view_func=google_auth.login, methods=['GET'])
