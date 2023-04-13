@@ -48,7 +48,7 @@ def select_features():
       if not bool(request_dict):
          clean_data()
       else:
-         generator.drop_x(request_dict['drop_labels'])            
+         generator.drop_x(request_dict['drop_labels'])
          clean_data()
       return redirect('/select_y')
 
