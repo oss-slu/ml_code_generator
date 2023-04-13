@@ -12,6 +12,8 @@ from flask_app.api.generator import generator
 from flask_app.api.utils import allowed_file
 from flask_app.api.map_paths import correct_action
 
+from pandas_code.code_templates import is_categorical
+
 def welcome():
    session['current_state'] = 'start'
    return render_template('home.html')
@@ -57,7 +59,11 @@ def select_y():
    if request.method == 'POST':
       request_dict = request.form.to_dict()
       generator.select_y(request_dict['label'])
-      return redirect('/continuous?')
+      is_cat = is_categorical.is_categorical(generator.data['x_values'], generator.data['y_values'])
+      #print(is_cat)
+      if is_cat == (False, False):
+         return redirect('/continuous?')
+      flash('Data is Categorical')
 
    keys = generator.get_labels()
    return render_template('actions/select_output_value.html', labels=keys)
