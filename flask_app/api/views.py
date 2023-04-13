@@ -45,8 +45,11 @@ def select_features():
    session['current_state'] = 'prepare'
    if request.method == 'POST':
       request_dict = request.form.to_dict(flat=False)
-      generator.drop_x(request_dict['drop_labels'])
-      clean_data()
+      if not bool(request_dict):
+         clean_data()
+      else:
+         generator.drop_x(request_dict['drop_labels'])            
+         clean_data()
       return redirect('/select_y')
 
    keys = generator.get_labels()
