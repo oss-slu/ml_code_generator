@@ -12,7 +12,7 @@ from flask_app.api.generator import generator
 from flask_app.api.utils import allowed_file
 from flask_app.api.map_paths import correct_action
 
-from pandas_code.code_templates import is_categorical
+from pandas_code import is_categorical
 
 def welcome():
    session['current_state'] = 'start'

@@ -14,14 +14,15 @@ def run_generator(args):
    generator.drop_x(['eye'])
    clean_data = generator.clean_data()
    print(clean_data)
-   generator.select_y("sex") # the y can't be continuous for decision trees
-   generator.one_hot_encode_x_data()
+   generator.select_y("sex") 
+   generator.one_hot_encode_data()
    print(generator.split_data())
    generator.train_decision_tree()
    generator.predict_decision_tree()
    generator.eval_decision_tree()
    code = generator.download_code()
    print(code)
+
 #process the arguments
 if __name__ == '__main__':
    run_generator(sys.argv)
