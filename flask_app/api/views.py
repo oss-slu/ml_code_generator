@@ -65,6 +65,8 @@ def select_y():
       is_cat = is_categorical.is_categorical(generator.data['x_values'], generator.data['y_values'])
       if is_cat == (True, False):
          return redirect('/continuous?')
+      if is_cat == (True, True):
+         return redirect('/categorical?')
       flash('Data is Categorical')
 
    keys = generator.get_labels()
@@ -78,6 +80,14 @@ def continuous():
 
    keys = generator.get_labels()
    return render_template('actions/continuous_model_selection.html', labels=keys)
+
+def categorical():
+   session['current_state'] = 'prepare'
+   if request.method == 'POST':
+      return redirect('/split?')
+
+   keys = generator.get_labels()
+   return render_template('actions/categorical_model_selection.html', labels=keys)
 
 def upload_file():
    session['current_state'] = 'upload'
