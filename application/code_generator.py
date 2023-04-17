@@ -1,5 +1,5 @@
 from model import code_blocks
-from pandas_code.code_templates import is_categorical
+from pandas_code import is_categorical
 
 class CodeGenerator:
    def __init__(self, template_mapping, parse_template):
@@ -38,16 +38,16 @@ class CodeGenerator:
       self._save('x_values', x_values)
       self._save('y_values', y_values)
 
-   def one_hot_encode_x_data(self):
+   def one_hot_encode_data(self):
       x_values = self.data["x_values"]
       y_values = self.data["y_values"]
       create_code = is_categorical.is_categorical(x_values, y_values)
       if create_code[0]:
          x_values = self._parse_and_execute('one_hot_encode_x_data', ['x_values'])
+         self._save('x_values', x_values)
       if create_code[1]:
          y_values = self._parse_and_execute('one_hot_encode_y_data', ['y_values'])
-      self._save('x_values', x_values)
-      self._save('y_values', y_values)
+         self._save('y_values', y_values)
 
    def split_data(self, train_ratio = 0.8, seed = 200):
       # the ordering of x/y train/test is different here but I don't know why
@@ -80,7 +80,8 @@ class CodeGenerator:
 
    def train_decision_tree(self):
       model = self._parse_and_execute('train_decision_tree', ['x_train', 'y_train'])
-      self._save('model', model)      # will need to be renamed if using multiple models
+      self._save('model', model)
+      # ^ will need to be renamed to be more specific if using multiple models
       return model
 
    def predict_decision_tree(self):
@@ -89,7 +90,6 @@ class CodeGenerator:
 
    def eval_decision_tree(self):
       self._parse_and_execute('eval_decision_tree', ['y_test', 'test_preds'])
-      # ^ this is going to the predict function again
 
    def download_code(self):
       return self.blocks.to_text()
