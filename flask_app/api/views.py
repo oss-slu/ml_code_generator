@@ -63,9 +63,9 @@ def select_y():
       request_dict = request.form.to_dict()
       generator.select_y(request_dict['label'])
       is_cat = is_categorical.is_categorical(generator.data['x_values'], generator.data['y_values'])
-      if is_cat == (True, False):
+      if is_cat == (True, False) or is_cat == (False, False):
          return redirect('/continuous?')
-      if is_cat == (True, True):
+      if is_cat == (True, True) or is_cat == (False, True):
          return redirect('/categorical?')
       flash('Data is Categorical')
 
