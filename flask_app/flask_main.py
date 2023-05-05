@@ -38,8 +38,9 @@ def create_app():
    return app
 
 # main driver function
+# run() method of Flask class runs the application
+# on the local development server.
+
+main_app = create_app()
 if __name__ == '__main__':
-   # run() method of Flask class runs the application
-   # on the local development server.
-   main_app = create_app()
    main_app.run()
