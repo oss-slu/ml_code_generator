@@ -51,4 +51,3 @@ def make_ipynb():
       json.dump(template, tmp)
       tmp.flush()
       return tmp.name
-      json.dump(template,outfile)
