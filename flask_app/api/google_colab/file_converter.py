@@ -1,8 +1,6 @@
 import json
 import tempfile
 import re
-from datetime import date
-import os.path
 from flask_app.api.generator import generator
 
 def make_ipynb():
@@ -48,15 +46,9 @@ def make_ipynb():
       "nbformat": 4,
       "nbformat_minor": 2
    }
-   tmp = tempfile.NamedTemporaryFile(mode="w", delete=False)
-   json.dump(template, tmp)
-   tmp.flush()
-   return tmp.name
 
-   #if os.path.exists(file_name):
-   #   with open (file_name, mode = "w",encoding="utf-8") as outfile:
-   #      json.dump(template,outfile)
-   #else:
-   #   with open (file_name, mode = "x",encoding="utf-8") as outfile:
-   #      json.dump(template,outfile)
-         
+   with tempfile.NamedTemporaryFile(mode="w", delete=False) as tmp:
+      json.dump(template, tmp)
+      tmp.flush()
+      return tmp.name
+      json.dump(template,outfile)

@@ -1,6 +1,4 @@
 import tempfile
-from datetime import date
-
 import flask
 
 import googleapiclient.discovery
