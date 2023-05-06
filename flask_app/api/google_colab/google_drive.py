@@ -60,5 +60,5 @@ def upload():
    return flask.render_template("upload.html")
 
 def download():
-   make_ipynb()
-   return flask.send_file("../data/" + str(date.today()) + ".ipynb")
+   ipynb_file = make_ipynb()
+   return flask.send_file(ipynb_file)
