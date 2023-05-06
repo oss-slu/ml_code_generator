@@ -7,7 +7,6 @@ import google.oauth2.credentials
 
 import flask
 from authlib.integrations.flask_client import OAuth
-#from flask_app.api import config
 
 oauth = OAuth(current_app)
 
