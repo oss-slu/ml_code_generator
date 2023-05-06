@@ -63,7 +63,6 @@ def select_y():
       request_dict = request.form.to_dict()
       generator.select_y(request_dict['label'])
       is_cat = is_categorical.is_categorical(generator.data['x_values'], generator.data['y_values'])
-      #print(is_cat)
       if is_cat == (False, False):
          return redirect('/continuous?')
       flash('Data is Categorical')
@@ -97,12 +96,11 @@ def upload_file():
 
       if file and allowed_file(file.filename):
          filename = secure_filename(file.filename)
-         file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
-         # return redirect(url_for('download_file', name=filename))
-         print(g)
-
+         ROOT_DIR = os.environ.get("PYTHONPATH", None)
+         fullpath = os.path.join(ROOT_DIR+'/'+current_app.config['UPLOAD_FOLDER'], filename)
+         file.save(fullpath)
          with current_app.app_context():
-            generator.load_data(current_app.config['UPLOAD_FOLDER']+'/' + filename)
+            generator.load_data(fullpath)
 
          return redirect('/describe')
 

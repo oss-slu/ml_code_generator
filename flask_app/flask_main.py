@@ -42,5 +42,5 @@ def create_app():
 # on the local development server.
 
 main_app = create_app()
-if __name__ == '__main__':
-   main_app.run()
+#if __name__ == '__main__':
+#   main_app.run()
