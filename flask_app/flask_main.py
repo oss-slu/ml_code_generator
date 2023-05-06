@@ -1,24 +1,18 @@
 import os
 from flask import Flask
 
+from flask_app.api import config
 from flask_app.api import views
 from flask_app.api.google_colab import google_auth
 from flask_app.api.google_colab import google_drive
-from flask_app.api.config import UPLOAD_FOLDER
-from flask_app.api.config import GOOGLE_CLIENT_ID
-from flask_app.api.config import GOOGLE_CLIENT_SECRET
-from flask_app.api.config import GOOGLE_DISCOVERY_URL
 
 def create_app():
 
    app = Flask(__name__, template_folder='templates')
    app.secret_key = os.urandom(24)
-   # add config variables
-   app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-   app.config['GOOGLE_CLIENT_ID'] = GOOGLE_CLIENT_ID
-   app.config['GOOGLE_CLIENT_SECRET'] = GOOGLE_CLIENT_SECRET
-   app.config['GOOGLE_DISCOVERY_URL'] = GOOGLE_DISCOVERY_URL
+   # add config variables
+   config.load(app)
 
    # add routes
    app.add_url_rule('/', view_func=views.welcome, methods=['GET'])
@@ -42,5 +36,7 @@ def create_app():
 # on the local development server.
 
 main_app = create_app()
-#if __name__ == '__main__':
-#   main_app.run()
+
+if __name__ == '__main__':
+   main_app.run()
+

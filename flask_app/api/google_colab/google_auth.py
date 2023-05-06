@@ -7,7 +7,7 @@ import google.oauth2.credentials
 
 import flask
 from authlib.integrations.flask_client import OAuth
-from flask_app.api import config
+#from flask_app.api import config
 
 oauth = OAuth(current_app)
 
@@ -19,9 +19,9 @@ app = flask.Blueprint('google_auth', __name__)
 def build_credentials():
    return google.oauth2.credentials.Credentials(
                session['access_token'],
-               client_id=config.GOOGLE_CLIENT_ID,
-               client_secret=config.GOOGLE_CLIENT_SECRET,
-               token_uri=config.ACCESS_TOKEN_URI)
+               client_id=current_app.config['GOOGLE_CLIENT_ID'],
+               client_secret=current_app.config['GOOGLE_CLIENT_SECRET'],
+               token_uri=current_app.config['ACCESS_TOKEN_URI'])
 
 def get_user_info():
    credentials = build_credentials()
