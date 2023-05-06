@@ -24,4 +24,3 @@ def load(app):
    # basedir is defined dynamically based on PYTHONPATH
    app.config['GOOGLE_CLIENT_ID'] = google_client_id
    app.config['GOOGLE_CLIENT_SECRET'] = google_client_secret
-
