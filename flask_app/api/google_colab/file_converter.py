@@ -1,45 +1,53 @@
 import json
-from datetime import date
-import os.path
+import tempfile
+import re
 from flask_app.api.generator import generator
 
 def make_ipynb():
    code = generator.download_code()
-   code = code.replace("data//possum.csv", "/content/drive/My Drive/possum.csv")
-   file_name = "data/"+ str(date.today()) + ".ipynb"
+   print(code)
+
+   ##################################################################
+   # Thanks ChatGPT, for this bit of wisdom about regular expressions
+   ##################################################################
+   # Define the new file path you want to use
+   new_file_path = '/content/drive/My Drive/'
+   # Define a regular expression pattern that matches the file path and any characters before it
+   pattern = r'^(.*pd\.read_csv\(").*/([^/]+\.[^/]+)(?="\))'
+   # Use the regular expression to replace the file path in the original string
+   code = re.sub(pattern, r'\g<1>' + new_file_path + r'\2', code, flags=re.MULTILINE)
+
    template = {
-   "cells": [
-      {
-      "cell_type": "code",
-      "metadata": {},
-      "outputs": [],
-      "source": [
-        "from google.colab import drive\n",
-        "drive.mount('/content/drive')"
-      ],
-      },
-      {
+      "cells": [
+         {
          "cell_type": "code",
          "metadata": {},
          "outputs": [],
          "source": [
-            code
-         ]
-      }
-   ],
-   "metadata": {
-      "language_info": {
-         "name": "python"
+           "from google.colab import drive\n",
+           "drive.mount('/content/drive')"
+         ],
+         },
+         {
+            "cell_type": "code",
+            "metadata": {},
+            "outputs": [],
+            "source": [
+               code
+            ]
+         }
+      ],
+      "metadata": {
+         "language_info": {
+            "name": "python"
+         },
+         "orig_nbformat": 4
       },
-      "orig_nbformat": 4
-   },
-   "nbformat": 4,
-   "nbformat_minor": 2
-}
-   if os.path.exists(file_name):
-      with open (file_name, mode = "w",encoding="utf-8") as outfile:
-         json.dump(template,outfile)
-   else:
-      with open (file_name, mode = "x",encoding="utf-8") as outfile:
-         json.dump(template,outfile)
-         
+      "nbformat": 4,
+      "nbformat_minor": 2
+   }
+
+   with tempfile.NamedTemporaryFile(mode="w", delete=False) as tmp:
+      json.dump(template, tmp)
+      tmp.flush()
+      return tmp.name

@@ -1,6 +1,5 @@
 import os
 
-from flask import g
 from flask import current_app
 from flask import render_template
 from flask import request, redirect, flash
@@ -109,12 +108,11 @@ def upload_file():
 
       if file and allowed_file(file.filename):
          filename = secure_filename(file.filename)
-         file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
-         # return redirect(url_for('download_file', name=filename))
-         print(g)
-
+         basedir = os.environ.get("PYTHONPATH", None)
+         fullpath = os.path.join(basedir+'/'+current_app.config['UPLOAD_FOLDER'], filename)
+         file.save(fullpath)
          with current_app.app_context():
-            generator.load_data(current_app.config['UPLOAD_FOLDER']+'/' + filename)
+            generator.load_data(fullpath)
 
          return redirect('/describe')
 

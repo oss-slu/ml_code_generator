@@ -45,4 +45,4 @@ Point your web browser to http://127.0.0.1:5000 to access the user interface of 
 1. deactivate
 
 ## Environment Variables
-This application contains a "Login with Google" feature. In order for this feature to properly work, there needs to be a <code>flask_app/api/.env</code> file defining two variables: GOOGLE_CLIENT_SECRET and GOOGLE_CLIENT_ID. These variables come from Google Cloud credentials configuration (google developer console). This file is intentionally part of the code repository, because those values must be kept secret.
+This application contains a "Login with Google" feature. In order for this feature to properly work, there needs to be a <code>.env</code> file in the root directory of the project, defining two variables: GOOGLE_CLIENT_SECRET and GOOGLE_CLIENT_ID. These variables come from Google Cloud credentials configuration (google developer console). This file is intentionally part of the code repository, because those values must be kept secret.

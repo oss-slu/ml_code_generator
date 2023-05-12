@@ -1,6 +1,8 @@
 import re
+import os
 def parse_template(template_name, args):
-   template = 'pandas_code/code_templates/'+template_name+".py"
+   root_dir = os.environ.get("PYTHONPATH", None)
+   template = root_dir+'/pandas_code/code_templates/'+template_name+".py"
    generated_comments = []
    generated_code = []
    indent_size = 0
