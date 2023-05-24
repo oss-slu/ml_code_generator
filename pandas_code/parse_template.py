@@ -8,8 +8,8 @@ def parse_template(template_name, args):
                'select_y' : 'pandas/', 'eval_decision_tree' : 'sklearn/', 
                'eval_lin_reg' : 'sklearn/','split' : 'sklearn/',
                'train_decision_tree' : 'sklearn/', 'train_lin_reg' : 'sklearn/',
-               'get_keys' : '','predict_decision_tree' : 'tensorflow/', 'predict_lin_reg' : 'tensorflow/' }
-   
+               'get_keys' : '','predict_decision_tree' : 'tensorflow/', 
+               'predict_lin_reg' : 'tensorflow/' }
    root_dir = os.environ.get("PYTHONPATH", None)
    template = root_dir+'/code_templates/'+root_map[template_name]+template_name+".py"
    generated_comments = []
