@@ -1,18 +1,18 @@
-from pandas_code.code_templates import clean_data
-from pandas_code.code_templates import describe_data
-from pandas_code.code_templates import drop_x
-from pandas_code.code_templates import eval_decision_tree
-from pandas_code.code_templates import eval_lin_reg
-from pandas_code.code_templates import get_keys
-from pandas_code.code_templates import one_hot_encode_x_data
-from pandas_code.code_templates import one_hot_encode_y_data
-from pandas_code.code_templates import predict_decision_tree
-from pandas_code.code_templates import predict_lin_reg
-from pandas_code.code_templates import read_csv
-from pandas_code.code_templates import select_y
-from pandas_code.code_templates import split
-from pandas_code.code_templates import train_decision_tree
-from pandas_code.code_templates import train_lin_reg
+from code_templates.pandas import clean_data
+from code_templates.pandas import describe_data
+from code_templates.pandas import drop_x
+from code_templates.sklearn import eval_decision_tree
+from code_templates.sklearn import eval_lin_reg
+from code_templates import get_keys
+from code_templates.pandas import one_hot_encode_x_data
+from code_templates.pandas import one_hot_encode_y_data
+from code_templates.tensorflow import predict_decision_tree
+from code_templates.tensorflow import predict_lin_reg
+from code_templates.pandas import read_csv
+from code_templates.pandas import select_y
+from code_templates.sklearn import split
+from code_templates.sklearn import train_decision_tree
+from code_templates.sklearn import train_lin_reg
 
 template_mapping = {
    'clean_data':clean_data.get_code,
