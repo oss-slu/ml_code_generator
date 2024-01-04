@@ -7,7 +7,7 @@
 }
 
 body {
-   background: #21252d;
+   background: #00b4fc; /* #8db8f7; /*#74b9ff;  #50688c;*/
    display: flex;
    display: -webkit-flex;
    align-items: center;
@@ -19,9 +19,9 @@ body {
  }
 
 .container {
-   width: 80%;
+   width: 60%;
    margin: 0 auto;
-   background-color: #353b44;
+   background-color: #005bc5; /*#6d8dbd;*/
    color: white;
    padding: 1.5em;
    border-radius: 25px;
@@ -59,8 +59,6 @@ li a {
   margin-left: 1em;
   border-radius: 1em;
   background: #51ffc2;
-  -webkit-box-shadow: 0px 0px 14px 3px rgba(81,255,194,0.35);
-  box-shadow: 0px 0px 14px 3px rgba(81,255,194,0.35);
 }
 
 /* base.html */
@@ -72,7 +70,7 @@ li a {
 .content header {
    font-size: 2em;
    font-weight: 800;
-   background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%);
+   background: #17f9ff;
    background-clip: text;
    -webkit-background-clip: text;
    color: transparent;
@@ -92,8 +90,8 @@ li a {
 /* home.html */
 
 .content p {
-   font-size: 1.05em;
-   line-height: 2.25em;
+   font-size: 1.2em;
+   line-height: 1.75em;
    margin-block-start: 1rem !important;
    margin-block-end: 1rem !important;
 }
@@ -114,7 +112,7 @@ li a {
 input:is([type="button"], [type="submit"]), input[type="file"]::file-selector-button, button {
    font-weight: bold;
    font-size: 13px;
-   width: 150px;
+   /*width: 150px;*/
    padding: 1em;
    border-radius: 1em;
    border-width: 0;
@@ -127,14 +125,16 @@ input:is([type="file"]) {
 input:is([type="button"]), input[type="file"]::file-selector-button, button {
    background-color: white;
    cursor: pointer; 
+   font-size: 1.15em;
 }
 
 input:is([type="submit"]), button {
    -webkit-box-shadow: 0px 0px 14px 3px rgba(255,202,210,0.35);
    box-shadow: 0px 0px 14px 3px rgba(255,202,210,0.35);
-   background: linear-gradient(90deg, rgba(255,202,210,1) 0%, rgba(253,140,156,1) 0%, rgba(255,182,192,0.8449754901960784) 100%);
+   background: #012677; /*#55efc4; #00ff95;*/
    color: white;
    cursor: pointer;
+   font-size: 1.15em;
 }
 
 /* description.html */
@@ -155,9 +155,9 @@ th, td {
 
 #code {
    margin: auto;
-   width: 60%;
+   /*width: 60%;*/
    text-align: left !important;
-   background-color: #1b1f25;
+   background-color: #012677; /*#1b1f25;*/
    padding: 1em;
    border-radius: 1.5em;
 }
@@ -169,12 +169,13 @@ th, td {
    padding: 0.5em;
    font-weight: bold;
    border-radius: 1em;
-   background: linear-gradient(90deg, rgba(255,202,210,1) 0%, rgba(253,140,156,1) 0%, rgba(255,182,192,0.8449754901960784) 100%);
+   background: #012677; /* #00b894; #00ff95;*/ 
    color: white;
    width: 20%;
    -webkit-box-shadow: 0px 0px 14px 3px rgba(255,202,210,0.35);
   box-shadow: 0px 0px 14px 3px rgba(255,202,210,0.35);
   line-height: 2.25em;
+  font-size: 1.15em;
 }
 
 .action button {
